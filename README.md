@@ -81,4 +81,9 @@ La rama principal es `main`. La línea base de esta fase se identifica con `v0.1
 
 ## Autoría y licencia
 
-Los datos académicos de autoría están pendientes. No se declara una licencia hasta que el autor la seleccione expresamente.
+**Autor:** Stalyn Mateo Sánchez Cevallos  
+**Institución:** Instituto Superior Universitario Japón  
+**Carrera:** Tecnología Superior en Desarrollo de Software  
+**Año:** 2026
+
+La licencia permanece pendiente hasta que el autor la seleccione expresamente.
