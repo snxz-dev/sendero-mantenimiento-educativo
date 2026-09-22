@@ -11,8 +11,8 @@ La institución y los datos del caso son ficticios. El proyecto es independiente
 
 | Fase | Estado | Evidencia disponible |
 |---|---|---|
-| Fase 1 — Análisis y Diseño | **Cerrada para revisión definitiva** | Problema, alcance, factibilidad preliminar, actores, procesos, requerimientos, reglas, clasificación MVP, estados y cinco figuras. |
-| Fase 2 — Modelado UML y de datos | **Pendiente** | No iniciado. |
+| Fase 1 — Análisis y Diseño | **Cerrada y publicada** | Problema, alcance, factibilidad preliminar, actores, procesos, requerimientos, reglas, clasificación MVP, estados y cinco figuras. Tag `v0.1-fase-1`. |
+| Fase 2 — Modelado y diseño de base de datos | **Terminada para revisión** | Modelo conceptual, MER, modelo relacional en 3FN, diccionario, SQL preliminar, integridad y trazabilidad. No se ha elegido motor. |
 | Fase 3 — Arquitectura, stack y base de datos | **Pendiente** | No se han seleccionado tecnologías ni generado el SQL. |
 | Fase 4 — Mockups y prototipo frontend | **Pendiente** | No iniciado. |
 | Fase 5 — Implementación e integración | **Pendiente** | No existe código funcional de web, escritorio, móvil o backend. |
@@ -54,6 +54,10 @@ Los directorios de aplicaciones, backend y base de datos contienen únicamente a
 - [Informe navegable de Fase 1](docs/fase-1/Fase_1_Analisis_y_Diseno.html)
 - [Figuras y fuentes estructuradas](docs/fase-1/figuras/)
 - [Control de la entrega](docs/fase-1/Control_de_entrega.md)
+- [Fase 2 — Modelado y Diseño de Base de Datos](docs/fase-2/Fase_2_Modelado_y_Base_de_Datos.md)
+- [Informe navegable de Fase 2](docs/fase-2/Fase_2_Modelado_y_Base_de_Datos.html)
+- [Diccionario de datos de Fase 2](docs/fase-2/diccionario_datos.csv)
+- [SQL preliminar independiente del motor](database/esquema_preliminar.sql)
 
 ## Entorno de trabajo confirmado
 

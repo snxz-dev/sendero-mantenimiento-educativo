@@ -1,0 +1,30 @@
+---
+title: Figura 6. Modelo Entidad-Relación del sistema Sendero
+---
+erDiagram
+  ROL ||--o{ USUARIO_ROL : clasifica
+  USUARIO ||--o{ USUARIO_ROL : posee
+  SEDE ||--o{ ESPACIO : contiene
+  ESPACIO ||--o{ RESPONSABLE_ESPACIO : tiene
+  USUARIO ||--o{ RESPONSABLE_ESPACIO : asume
+  USUARIO ||--o{ INCIDENCIA : reporta
+  ESPACIO ||--o{ INCIDENCIA : localiza
+  CATEGORIA_INCIDENCIA ||--o{ INCIDENCIA : clasifica
+  PRIORIDAD ||--o{ INCIDENCIA : prioriza
+  ESTADO_INCIDENCIA ||--o{ INCIDENCIA : estado_actual
+  INCIDENCIA ||--o{ ACLARACION_INCIDENCIA : requiere
+  INCIDENCIA ||--o{ ORDEN_INCIDENCIA : vincula
+  ORDEN_TRABAJO ||--o{ ORDEN_INCIDENCIA : atiende
+  ESPACIO ||--o{ ORDEN_TRABAJO : ubica
+  PRIORIDAD ||--o{ ORDEN_TRABAJO : prioriza
+  ESTADO_ORDEN ||--o{ ORDEN_TRABAJO : estado_actual
+  ORDEN_TRABAJO ||--o{ ASIGNACION_TECNICA : asigna
+  USUARIO ||--o{ ASIGNACION_TECNICA : recibe
+  ASIGNACION_TECNICA ||--o{ INTERVENCION : habilita
+  INCIDENCIA ||--o{ EVIDENCIA : documenta
+  INTERVENCION ||--o{ EVIDENCIA : documenta
+  ORDEN_TRABAJO ||--o{ VERIFICACION : verifica
+  USUARIO ||--o{ VERIFICACION : emite
+  ORDEN_TRABAJO ||--o{ BLOQUEO_ORDEN : bloquea
+  INCIDENCIA ||--o{ HISTORIAL_INCIDENCIA : registra
+  ORDEN_TRABAJO ||--o{ HISTORIAL_ORDEN : registra

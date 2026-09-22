@@ -1,0 +1,2383 @@
+{
+  "version": "2.0-preliminar",
+  "prefix_placeholder": "PREF_",
+  "engine": "No seleccionado",
+  "tables": [
+    {
+      "name": "ROL",
+      "scope": "MVP",
+      "purpose": "Catálogo de funciones autorizadas.",
+      "columns": [
+        {
+          "name": "id_rol",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(40)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código estable del rol.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "nombre",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Nombre visible.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Disponibilidad para nuevas asignaciones.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "USUARIO",
+      "scope": "MVP",
+      "purpose": "Persona con acceso o participación registrada.",
+      "columns": [
+        {
+          "name": "id_usuario",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "nombre_acceso",
+          "type": "VARCHAR(80)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Identificador de inicio de sesión.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "credencial_hash",
+          "type": "VARCHAR(255)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Derivado seguro de la credencial; nunca contraseña en texto plano.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "nombres",
+          "type": "VARCHAR(120)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Nombres de la persona.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "apellidos",
+          "type": "VARCHAR(120)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Apellidos de la persona.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "correo",
+          "type": "VARCHAR(254)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Correo institucional opcional.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Habilitación de acceso.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_creacion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Fecha de alta.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_actualizacion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Última actualización declarada.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "USUARIO_ROL",
+      "scope": "MVP",
+      "purpose": "Asignación histórica de roles a usuarios.",
+      "columns": [
+        {
+          "name": "id_usuario",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK,FK",
+          "default": "",
+          "description": "Usuario asignado.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "id_rol",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK,FK",
+          "default": "",
+          "description": "Rol asignado.",
+          "ref": "ROL.id_rol",
+          "unique": false
+        },
+        {
+          "name": "fecha_desde",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "PK",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Inicio de vigencia.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_hasta",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Fin de vigencia; NULL significa vigente.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "fecha_hasta IS NULL OR fecha_hasta >= fecha_desde"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_UR_ROL",
+          [
+            "id_rol",
+            "fecha_hasta"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "SEDE",
+      "scope": "MVP",
+      "purpose": "Sede física de la institución.",
+      "columns": [
+        {
+          "name": "id_sede",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(30)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código institucional.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "nombre",
+          "type": "VARCHAR(120)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Nombre de la sede.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "direccion_referencia",
+          "type": "VARCHAR(300)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Referencia descriptiva de ubicación.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Disponibilidad para nuevos registros.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "ESPACIO",
+      "scope": "MVP",
+      "purpose": "Área física donde se reportan y ejecutan trabajos.",
+      "columns": [
+        {
+          "name": "id_espacio",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_sede",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Sede a la que pertenece.",
+          "ref": "SEDE.id_sede",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(40)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código único dentro de la sede.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "nombre",
+          "type": "VARCHAR(120)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Nombre visible.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "tipo",
+          "type": "VARCHAR(60)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Aula, laboratorio, oficina u otro tipo.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "ubicacion_referencia",
+          "type": "VARCHAR(250)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Piso, bloque u otra referencia.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Disponibilidad para nuevos registros.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [
+        [
+          "UQ_ESP_SEDE_COD",
+          [
+            "id_sede",
+            "codigo"
+          ]
+        ]
+      ],
+      "indexes": [
+        [
+          "IX_ESP_SEDE",
+          [
+            "id_sede"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "RESPONSABLE_ESPACIO",
+      "scope": "MVP",
+      "purpose": "Autoriza quién puede verificar trabajos de un espacio.",
+      "columns": [
+        {
+          "name": "id_responsabilidad",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_espacio",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Espacio administrado.",
+          "ref": "ESPACIO.id_espacio",
+          "unique": false
+        },
+        {
+          "name": "id_usuario",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Responsable autorizado.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_desde",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Inicio de vigencia.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_hasta",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Fin de vigencia.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "es_principal",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "FALSE",
+          "description": "Indica responsable preferente.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "fecha_hasta IS NULL OR fecha_hasta >= fecha_desde"
+      ],
+      "uniques": [
+        [
+          "UQ_RESP_ESP_VIG",
+          [
+            "id_espacio",
+            "id_usuario",
+            "fecha_desde"
+          ]
+        ]
+      ],
+      "indexes": [
+        [
+          "IX_RESP_USU",
+          [
+            "id_usuario",
+            "fecha_hasta"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "CATEGORIA_INCIDENCIA",
+      "scope": "MVP",
+      "purpose": "Clasificación funcional del desperfecto.",
+      "columns": [
+        {
+          "name": "id_categoria",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(30)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código estable.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "nombre",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Nombre visible.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "descripcion",
+          "type": "VARCHAR(500)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Criterio de uso.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Disponibilidad para nuevos reportes.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "PRIORIDAD",
+      "scope": "MVP",
+      "purpose": "Catálogo ordenado de prioridad operativa.",
+      "columns": [
+        {
+          "name": "id_prioridad",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "BAJA, MEDIA, ALTA o CRITICA.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "nombre",
+          "type": "VARCHAR(60)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Nombre visible.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "nivel_orden",
+          "type": "INTEGER",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Orden relativo; no representa tiempo máximo.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Disponibilidad para clasificación.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "nivel_orden > 0"
+      ],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "ESTADO_INCIDENCIA",
+      "scope": "MVP",
+      "purpose": "Catálogo del ciclo de vida de incidencias.",
+      "columns": [
+        {
+          "name": "id_estado_incidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(40)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código de estado.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "nombre",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Etiqueta visible.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "es_terminal",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "FALSE",
+          "description": "Indica si no admite transición ordinaria.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Disponibilidad para configuración futura.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "INCIDENCIA",
+      "scope": "MVP",
+      "purpose": "Necesidad reportada por un solicitante.",
+      "columns": [
+        {
+          "name": "id_incidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(30)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código público del reporte.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "id_solicitante",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Autor del reporte.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "id_espacio",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Espacio afectado.",
+          "ref": "ESPACIO.id_espacio",
+          "unique": false
+        },
+        {
+          "name": "id_categoria",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Categoría del problema.",
+          "ref": "CATEGORIA_INCIDENCIA.id_categoria",
+          "unique": false
+        },
+        {
+          "name": "id_prioridad",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Prioridad confirmada durante revisión.",
+          "ref": "PRIORIDAD.id_prioridad",
+          "unique": false
+        },
+        {
+          "name": "id_estado_incidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Estado vigente.",
+          "ref": "ESTADO_INCIDENCIA.id_estado_incidencia",
+          "unique": false
+        },
+        {
+          "name": "descripcion",
+          "type": "VARCHAR(2000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Descripción del desperfecto.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "urgencia_declarada",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "FALSE",
+          "description": "Percepción inicial del solicitante.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_registro",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento del reporte.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_actualizacion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Última actualización declarada.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_INC_BANDEJA",
+          [
+            "id_estado_incidencia",
+            "id_prioridad",
+            "fecha_registro"
+          ]
+        ],
+        [
+          "IX_INC_ESPACIO",
+          [
+            "id_espacio",
+            "fecha_registro"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "ACLARACION_INCIDENCIA",
+      "scope": "MVP",
+      "purpose": "Pregunta del coordinador y respuesta del solicitante.",
+      "columns": [
+        {
+          "name": "id_aclaracion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_incidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Incidencia aclarada.",
+          "ref": "INCIDENCIA.id_incidencia",
+          "unique": false
+        },
+        {
+          "name": "pregunta",
+          "type": "VARCHAR(1000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Información solicitada.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "preguntado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador que pregunta.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_pregunta",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento de la pregunta.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "respuesta",
+          "type": "VARCHAR(2000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Respuesta aportada.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "respondido_por",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Usuario que responde.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_respuesta",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Momento de respuesta.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "(respuesta IS NULL AND respondido_por IS NULL AND fecha_respuesta IS NULL) OR (respuesta IS NOT NULL AND respondido_por IS NOT NULL AND fecha_respuesta IS NOT NULL)",
+        "fecha_respuesta IS NULL OR fecha_respuesta >= fecha_pregunta"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_ACL_INC",
+          [
+            "id_incidencia",
+            "fecha_pregunta"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "ESTADO_ORDEN",
+      "scope": "MVP",
+      "purpose": "Catálogo del ciclo de vida de órdenes.",
+      "columns": [
+        {
+          "name": "id_estado_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(40)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código de estado.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "nombre",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Etiqueta visible.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "es_terminal",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "FALSE",
+          "description": "Indica si finaliza el ciclo ordinario.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "activo",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Disponibilidad para configuración futura.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "ORDEN_TRABAJO",
+      "scope": "MVP",
+      "purpose": "Unidad de planificación, ejecución y cierre del mantenimiento.",
+      "columns": [
+        {
+          "name": "id_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "codigo",
+          "type": "VARCHAR(30)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Código público de la orden.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "tipo_orden",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "key": "",
+          "default": "'CORRECTIVA'",
+          "description": "CORRECTIVA en MVP; PREVENTIVA queda preparada.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_espacio",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Espacio intervenido.",
+          "ref": "ESPACIO.id_espacio",
+          "unique": false
+        },
+        {
+          "name": "id_prioridad",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Prioridad operativa de la orden.",
+          "ref": "PRIORIDAD.id_prioridad",
+          "unique": false
+        },
+        {
+          "name": "id_estado_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Estado vigente.",
+          "ref": "ESTADO_ORDEN.id_estado_orden",
+          "unique": false
+        },
+        {
+          "name": "alcance",
+          "type": "VARCHAR(2000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Trabajo esperado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "creado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador creador.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "ciclo_actual",
+          "type": "INTEGER",
+          "nullable": false,
+          "key": "",
+          "default": "1",
+          "description": "Número del ciclo vigente; aumenta al reabrir.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_creacion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento de creación.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_fin_tecnica",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Última finalización técnica vigente.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_cierre",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Último cierre formal.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "tipo_orden IN ('CORRECTIVA','PREVENTIVA')",
+        "ciclo_actual > 0",
+        "fecha_fin_tecnica IS NULL OR fecha_fin_tecnica >= fecha_creacion",
+        "fecha_cierre IS NULL OR fecha_cierre >= fecha_creacion"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_ORD_BANDEJA",
+          [
+            "id_estado_orden",
+            "id_prioridad",
+            "fecha_creacion"
+          ]
+        ],
+        [
+          "IX_ORD_ESP",
+          [
+            "id_espacio",
+            "fecha_creacion"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "ORDEN_INCIDENCIA",
+      "scope": "MVP",
+      "purpose": "Vínculo entre orden correctiva e incidencia; en MVP se usa un reporte principal.",
+      "columns": [
+        {
+          "name": "id_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK,FK",
+          "default": "",
+          "description": "Orden vinculada.",
+          "ref": "ORDEN_TRABAJO.id_orden",
+          "unique": false
+        },
+        {
+          "name": "id_incidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK,FK",
+          "default": "",
+          "description": "Incidencia atendida.",
+          "ref": "INCIDENCIA.id_incidencia",
+          "unique": false
+        },
+        {
+          "name": "vinculado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador que vincula.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_vinculacion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento del vínculo.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_OI_INC",
+          [
+            "id_incidencia"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "ASIGNACION_TECNICA",
+      "scope": "MVP",
+      "purpose": "Responsabilidad y programación de un técnico por ciclo.",
+      "columns": [
+        {
+          "name": "id_asignacion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Orden asignada.",
+          "ref": "ORDEN_TRABAJO.id_orden",
+          "unique": false
+        },
+        {
+          "name": "numero_ciclo",
+          "type": "INTEGER",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Ciclo al que corresponde.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_tecnico",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Usuario técnico.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "tipo_asignacion",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "key": "",
+          "default": "'RESPONSABLE'",
+          "description": "RESPONSABLE en MVP; COLABORADOR queda preparado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "programada_inicio",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Inicio previsto.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "programada_fin",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Fin previsto.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "asignado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador que asigna.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_asignacion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento de asignación.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "vigente",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Indica asignación actual.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_fin_vigencia",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Fin de la asignación si fue reemplazada.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "numero_ciclo > 0",
+        "tipo_asignacion IN ('RESPONSABLE','COLABORADOR')",
+        "programada_fin > programada_inicio",
+        "fecha_fin_vigencia IS NULL OR fecha_fin_vigencia >= fecha_asignacion"
+      ],
+      "uniques": [
+        [
+          "UQ_ASIG_CIC_TEC",
+          [
+            "id_orden",
+            "numero_ciclo",
+            "id_tecnico"
+          ]
+        ]
+      ],
+      "indexes": [
+        [
+          "IX_ASIG_TEC_AGENDA",
+          [
+            "id_tecnico",
+            "programada_inicio",
+            "programada_fin"
+          ]
+        ],
+        [
+          "IX_ASIG_ORD_VIG",
+          [
+            "id_orden",
+            "numero_ciclo",
+            "vigente"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "INTERVENCION",
+      "scope": "MVP",
+      "purpose": "Actividad técnica concreta realizada dentro de una asignación.",
+      "columns": [
+        {
+          "name": "id_intervencion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_asignacion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Asignación que habilita al técnico.",
+          "ref": "ASIGNACION_TECNICA.id_asignacion",
+          "unique": false
+        },
+        {
+          "name": "fecha_inicio",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Inicio real.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_fin",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Fin real.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "actividad",
+          "type": "VARCHAR(2000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Trabajo efectuado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "resultado",
+          "type": "VARCHAR(2000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Resultado observado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "estado_registro",
+          "type": "VARCHAR(10)",
+          "nullable": false,
+          "key": "",
+          "default": "'ABIERTO'",
+          "description": "ABIERTO o CERRADO.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_registro",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Creación del registro.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "estado_registro IN ('ABIERTO','CERRADO')",
+        "fecha_fin IS NULL OR fecha_fin >= fecha_inicio",
+        "(estado_registro = 'ABIERTO' AND fecha_fin IS NULL) OR (estado_registro = 'CERRADO' AND fecha_fin IS NOT NULL AND resultado IS NOT NULL)"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_INT_ASIG",
+          [
+            "id_asignacion",
+            "fecha_inicio"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "EVIDENCIA",
+      "scope": "MVP",
+      "purpose": "Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.",
+      "columns": [
+        {
+          "name": "id_evidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_incidencia",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Reporte al que pertenece.",
+          "ref": "INCIDENCIA.id_incidencia",
+          "unique": false
+        },
+        {
+          "name": "id_intervencion",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Intervención a la que pertenece.",
+          "ref": "INTERVENCION.id_intervencion",
+          "unique": false
+        },
+        {
+          "name": "nombre_original",
+          "type": "VARCHAR(255)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Nombre recibido para presentación controlada.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "clave_almacenamiento",
+          "type": "VARCHAR(500)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Referencia opaca al archivo externo.",
+          "ref": "",
+          "unique": true
+        },
+        {
+          "name": "tipo_mime",
+          "type": "VARCHAR(100)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Tipo de contenido validado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "tamano_bytes",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Tamaño validado del archivo.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "huella_sha256",
+          "type": "CHAR(64)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Huella de integridad del binario.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "descripcion",
+          "type": "VARCHAR(500)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Descripción accesible y contexto.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "cargado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Usuario que aporta la evidencia.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_carga",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento de confirmación.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "estado_archivo",
+          "type": "VARCHAR(15)",
+          "nullable": false,
+          "key": "",
+          "default": "'DISPONIBLE'",
+          "description": "DISPONIBLE, FALLIDA o RETIRADA.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "((id_incidencia IS NOT NULL AND id_intervencion IS NULL) OR (id_incidencia IS NULL AND id_intervencion IS NOT NULL))",
+        "tamano_bytes > 0",
+        "CHAR_LENGTH(huella_sha256) = 64",
+        "estado_archivo IN ('DISPONIBLE','FALLIDA','RETIRADA')"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_EVI_INC",
+          [
+            "id_incidencia"
+          ]
+        ],
+        [
+          "IX_EVI_INT",
+          [
+            "id_intervencion"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "VERIFICACION",
+      "scope": "MVP",
+      "purpose": "Dictamen independiente sobre el resultado de un ciclo de orden.",
+      "columns": [
+        {
+          "name": "id_verificacion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Orden verificada.",
+          "ref": "ORDEN_TRABAJO.id_orden",
+          "unique": false
+        },
+        {
+          "name": "numero_ciclo",
+          "type": "INTEGER",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Ciclo evaluado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_verificador",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Responsable del espacio que emite el dictamen.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "dictamen",
+          "type": "VARCHAR(20)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "CONFORME o NO_CONFORME.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "observacion",
+          "type": "VARCHAR(1500)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Fundamento o comentarios.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_verificacion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento del dictamen.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "vigente",
+          "type": "BOOLEAN",
+          "nullable": false,
+          "key": "",
+          "default": "TRUE",
+          "description": "Vigencia para el cierre del ciclo.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "numero_ciclo > 0",
+        "dictamen IN ('CONFORME','NO_CONFORME')",
+        "dictamen <> 'NO_CONFORME' OR observacion IS NOT NULL"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_VER_ORD_CIC",
+          [
+            "id_orden",
+            "numero_ciclo",
+            "fecha_verificacion"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "BLOQUEO_ORDEN",
+      "scope": "MVP",
+      "purpose": "Impedimento y posterior resolución durante un ciclo.",
+      "columns": [
+        {
+          "name": "id_bloqueo",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Orden bloqueada.",
+          "ref": "ORDEN_TRABAJO.id_orden",
+          "unique": false
+        },
+        {
+          "name": "numero_ciclo",
+          "type": "INTEGER",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Ciclo afectado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "VARCHAR(1000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Impedimento documentado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "abierto_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Técnico responsable o coordinador.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_apertura",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Inicio del bloqueo.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "resolucion",
+          "type": "VARCHAR(1000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Cómo se atendió el impedimento.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "cerrado_por",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Usuario que autoriza o registra resolución.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_cierre",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Fin del bloqueo.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "numero_ciclo > 0",
+        "(resolucion IS NULL AND cerrado_por IS NULL AND fecha_cierre IS NULL) OR (resolucion IS NOT NULL AND cerrado_por IS NOT NULL AND fecha_cierre IS NOT NULL)",
+        "fecha_cierre IS NULL OR fecha_cierre >= fecha_apertura"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_BLOQ_ORD",
+          [
+            "id_orden",
+            "numero_ciclo",
+            "fecha_cierre"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "HISTORIAL_INCIDENCIA",
+      "scope": "MVP",
+      "purpose": "Transiciones inmutables del estado de una incidencia.",
+      "columns": [
+        {
+          "name": "id_historial_incidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_incidencia",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Incidencia afectada.",
+          "ref": "INCIDENCIA.id_incidencia",
+          "unique": false
+        },
+        {
+          "name": "id_estado_origen",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Estado anterior; NULL al crear.",
+          "ref": "ESTADO_INCIDENCIA.id_estado_incidencia",
+          "unique": false
+        },
+        {
+          "name": "id_estado_destino",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Nuevo estado.",
+          "ref": "ESTADO_INCIDENCIA.id_estado_incidencia",
+          "unique": false
+        },
+        {
+          "name": "cambiado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Autor del cambio.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_cambio",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento del cambio.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "VARCHAR(1000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Motivo cuando la transición lo exige.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "referencia_operacion",
+          "type": "VARCHAR(64)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Identificador que vincula cambios de una misma operación.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "id_estado_origen IS NULL OR id_estado_origen <> id_estado_destino"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_HI_INC",
+          [
+            "id_incidencia",
+            "fecha_cambio"
+          ]
+        ],
+        [
+          "IX_HI_OP",
+          [
+            "referencia_operacion"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "HISTORIAL_ORDEN",
+      "scope": "MVP",
+      "purpose": "Transiciones inmutables del estado de una orden.",
+      "columns": [
+        {
+          "name": "id_historial_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_orden",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Orden afectada.",
+          "ref": "ORDEN_TRABAJO.id_orden",
+          "unique": false
+        },
+        {
+          "name": "numero_ciclo",
+          "type": "INTEGER",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Ciclo afectado.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_estado_origen",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Estado anterior; NULL al crear.",
+          "ref": "ESTADO_ORDEN.id_estado_orden",
+          "unique": false
+        },
+        {
+          "name": "id_estado_destino",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Nuevo estado.",
+          "ref": "ESTADO_ORDEN.id_estado_orden",
+          "unique": false
+        },
+        {
+          "name": "cambiado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Autor del cambio.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_cambio",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento del cambio.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "VARCHAR(1000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Motivo cuando la transición lo exige.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "referencia_operacion",
+          "type": "VARCHAR(64)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Identificador que vincula cambios de una misma operación.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "numero_ciclo > 0",
+        "id_estado_origen IS NULL OR id_estado_origen <> id_estado_destino"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_HO_ORD",
+          [
+            "id_orden",
+            "numero_ciclo",
+            "fecha_cambio"
+          ]
+        ],
+        [
+          "IX_HO_OP",
+          [
+            "referencia_operacion"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "DUPLICIDAD_INCIDENCIA",
+      "scope": "AMPLIACION",
+      "purpose": "Vínculo controlado entre reporte duplicado y principal.",
+      "columns": [
+        {
+          "name": "id_incidencia_duplicada",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK,FK",
+          "default": "",
+          "description": "Incidencia marcada duplicada.",
+          "ref": "INCIDENCIA.id_incidencia",
+          "unique": false
+        },
+        {
+          "name": "id_incidencia_principal",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Incidencia que concentra el seguimiento.",
+          "ref": "INCIDENCIA.id_incidencia",
+          "unique": false
+        },
+        {
+          "name": "marcado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador que decide.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_marcado",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento de decisión.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "VARCHAR(1000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Fundamento de duplicidad.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "id_incidencia_duplicada <> id_incidencia_principal"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_DUP_PRIN",
+          [
+            "id_incidencia_principal"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "SOLICITUD_CANCELACION",
+      "scope": "AMPLIACION",
+      "purpose": "Solicitud y resolución formal de cancelación.",
+      "columns": [
+        {
+          "name": "id_solicitud_cancelacion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_incidencia",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Incidencia objetivo.",
+          "ref": "INCIDENCIA.id_incidencia",
+          "unique": false
+        },
+        {
+          "name": "id_orden",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Orden objetivo.",
+          "ref": "ORDEN_TRABAJO.id_orden",
+          "unique": false
+        },
+        {
+          "name": "solicitado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Autor de la solicitud.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "motivo_solicitud",
+          "type": "VARCHAR(1000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Fundamento de solicitud.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "fecha_solicitud",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento de solicitud.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "resultado",
+          "type": "VARCHAR(15)",
+          "nullable": false,
+          "key": "",
+          "default": "'PENDIENTE'",
+          "description": "PENDIENTE, ACEPTADA o RECHAZADA.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "resuelto_por",
+          "type": "BIGINT",
+          "nullable": true,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador que resuelve.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_resolucion",
+          "type": "TIMESTAMP",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Momento de resolución.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "motivo_resolucion",
+          "type": "VARCHAR(1000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Fundamento de la decisión.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "((id_incidencia IS NOT NULL AND id_orden IS NULL) OR (id_incidencia IS NULL AND id_orden IS NOT NULL))",
+        "resultado IN ('PENDIENTE','ACEPTADA','RECHAZADA')",
+        "(resultado = 'PENDIENTE' AND resuelto_por IS NULL AND fecha_resolucion IS NULL) OR (resultado <> 'PENDIENTE' AND resuelto_por IS NOT NULL AND fecha_resolucion IS NOT NULL AND motivo_resolucion IS NOT NULL)"
+      ],
+      "uniques": [],
+      "indexes": []
+    },
+    {
+      "name": "CORRECCION_AUDITADA",
+      "scope": "AMPLIACION",
+      "purpose": "Corrección excepcional conservando valores anterior y nuevo.",
+      "columns": [
+        {
+          "name": "id_correccion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "tipo_registro",
+          "type": "VARCHAR(60)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Tipo lógico del registro corregido.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_registro",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Identificador del registro corregido.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "nombre_campo",
+          "type": "VARCHAR(80)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Campo corregido.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "valor_anterior",
+          "type": "VARCHAR(4000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Representación anterior.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "valor_nuevo",
+          "type": "VARCHAR(4000)",
+          "nullable": true,
+          "key": "",
+          "default": "",
+          "description": "Representación nueva.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "VARCHAR(1000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Justificación.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "autorizado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador que autoriza.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_correccion",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento de corrección.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "valor_anterior IS NOT NULL OR valor_nuevo IS NOT NULL"
+      ],
+      "uniques": [],
+      "indexes": [
+        [
+          "IX_CORR_REG",
+          [
+            "tipo_registro",
+            "id_registro"
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "VERSION_PROGRAMACION",
+      "scope": "AMPLIACION",
+      "purpose": "Versiones detalladas de programación y reasignación.",
+      "columns": [
+        {
+          "name": "id_version_programacion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "PK",
+          "default": "IDENTITY",
+          "description": "Identificador interno.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "id_asignacion",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Asignación versionada.",
+          "ref": "ASIGNACION_TECNICA.id_asignacion",
+          "unique": false
+        },
+        {
+          "name": "numero_version",
+          "type": "INTEGER",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Secuencia de versión.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "programada_inicio",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Inicio de esa versión.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "programada_fin",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Fin de esa versión.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "registrado_por",
+          "type": "BIGINT",
+          "nullable": false,
+          "key": "FK",
+          "default": "",
+          "description": "Coordinador que cambia.",
+          "ref": "USUARIO.id_usuario",
+          "unique": false
+        },
+        {
+          "name": "fecha_registro",
+          "type": "TIMESTAMP",
+          "nullable": false,
+          "key": "",
+          "default": "CURRENT_TIMESTAMP",
+          "description": "Momento del cambio.",
+          "ref": "",
+          "unique": false
+        },
+        {
+          "name": "motivo",
+          "type": "VARCHAR(1000)",
+          "nullable": false,
+          "key": "",
+          "default": "",
+          "description": "Razón de reprogramación.",
+          "ref": "",
+          "unique": false
+        }
+      ],
+      "checks": [
+        "numero_version > 0",
+        "programada_fin > programada_inicio"
+      ],
+      "uniques": [
+        [
+          "UQ_VER_ASIG",
+          [
+            "id_asignacion",
+            "numero_version"
+          ]
+        ]
+      ],
+      "indexes": []
+    }
+  ]
+}

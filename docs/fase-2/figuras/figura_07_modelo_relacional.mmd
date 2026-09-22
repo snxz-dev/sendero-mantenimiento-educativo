@@ -1,0 +1,241 @@
+---
+title: Figura 7. Modelo relacional normalizado del sistema Sendero
+---
+erDiagram
+  ROL {
+    BIGINT id_rol PK
+    VARCHAR_40 codigo
+    VARCHAR_100 nombre
+    BOOLEAN activo
+  }
+  USUARIO {
+    BIGINT id_usuario PK
+    VARCHAR_80 nombre_acceso
+    VARCHAR_255 credencial_hash
+    VARCHAR_120 nombres
+    VARCHAR_120 apellidos
+    VARCHAR_254 correo
+    BOOLEAN activo
+    TIMESTAMP fecha_creacion
+    TIMESTAMP fecha_actualizacion
+  }
+  USUARIO_ROL {
+    BIGINT id_usuario PK
+    BIGINT id_rol PK
+    TIMESTAMP fecha_desde PK
+    TIMESTAMP fecha_hasta
+  }
+  SEDE {
+    BIGINT id_sede PK
+    VARCHAR_30 codigo
+    VARCHAR_120 nombre
+    VARCHAR_300 direccion_referencia
+    BOOLEAN activo
+  }
+  ESPACIO {
+    BIGINT id_espacio PK
+    BIGINT id_sede FK
+    VARCHAR_40 codigo
+    VARCHAR_120 nombre
+    VARCHAR_60 tipo
+    VARCHAR_250 ubicacion_referencia
+    BOOLEAN activo
+  }
+  RESPONSABLE_ESPACIO {
+    BIGINT id_responsabilidad PK
+    BIGINT id_espacio FK
+    BIGINT id_usuario FK
+    TIMESTAMP fecha_desde
+    TIMESTAMP fecha_hasta
+    BOOLEAN es_principal
+  }
+  CATEGORIA_INCIDENCIA {
+    BIGINT id_categoria PK
+    VARCHAR_30 codigo
+    VARCHAR_100 nombre
+    VARCHAR_500 descripcion
+    BOOLEAN activo
+  }
+  PRIORIDAD {
+    BIGINT id_prioridad PK
+    VARCHAR_20 codigo
+    VARCHAR_60 nombre
+    INTEGER nivel_orden
+    BOOLEAN activo
+  }
+  ESTADO_INCIDENCIA {
+    BIGINT id_estado_incidencia PK
+    VARCHAR_40 codigo
+    VARCHAR_100 nombre
+    BOOLEAN es_terminal
+    BOOLEAN activo
+  }
+  INCIDENCIA {
+    BIGINT id_incidencia PK
+    VARCHAR_30 codigo
+    BIGINT id_solicitante FK
+    BIGINT id_espacio FK
+    BIGINT id_categoria FK
+    BIGINT id_prioridad FK
+    BIGINT id_estado_incidencia FK
+    VARCHAR_2000 descripcion
+    BOOLEAN urgencia_declarada
+    TIMESTAMP fecha_registro
+    TIMESTAMP fecha_actualizacion
+  }
+  ACLARACION_INCIDENCIA {
+    BIGINT id_aclaracion PK
+    BIGINT id_incidencia FK
+    VARCHAR_1000 pregunta
+    BIGINT preguntado_por FK
+    TIMESTAMP fecha_pregunta
+    VARCHAR_2000 respuesta
+    BIGINT respondido_por FK
+    TIMESTAMP fecha_respuesta
+  }
+  ESTADO_ORDEN {
+    BIGINT id_estado_orden PK
+    VARCHAR_40 codigo
+    VARCHAR_100 nombre
+    BOOLEAN es_terminal
+    BOOLEAN activo
+  }
+  ORDEN_TRABAJO {
+    BIGINT id_orden PK
+    VARCHAR_30 codigo
+    VARCHAR_20 tipo_orden
+    BIGINT id_espacio FK
+    BIGINT id_prioridad FK
+    BIGINT id_estado_orden FK
+    VARCHAR_2000 alcance
+    BIGINT creado_por FK
+    INTEGER ciclo_actual
+    TIMESTAMP fecha_creacion
+    TIMESTAMP fecha_fin_tecnica
+    TIMESTAMP fecha_cierre
+  }
+  ORDEN_INCIDENCIA {
+    BIGINT id_orden PK
+    BIGINT id_incidencia PK
+    BIGINT vinculado_por FK
+    TIMESTAMP fecha_vinculacion
+  }
+  ASIGNACION_TECNICA {
+    BIGINT id_asignacion PK
+    BIGINT id_orden FK
+    INTEGER numero_ciclo
+    BIGINT id_tecnico FK
+    VARCHAR_20 tipo_asignacion
+    TIMESTAMP programada_inicio
+    TIMESTAMP programada_fin
+    BIGINT asignado_por FK
+    TIMESTAMP fecha_asignacion
+    BOOLEAN vigente
+    TIMESTAMP fecha_fin_vigencia
+  }
+  INTERVENCION {
+    BIGINT id_intervencion PK
+    BIGINT id_asignacion FK
+    TIMESTAMP fecha_inicio
+    TIMESTAMP fecha_fin
+    VARCHAR_2000 actividad
+    VARCHAR_2000 resultado
+    VARCHAR_10 estado_registro
+    TIMESTAMP fecha_registro
+  }
+  EVIDENCIA {
+    BIGINT id_evidencia PK
+    BIGINT id_incidencia FK
+    BIGINT id_intervencion FK
+    VARCHAR_255 nombre_original
+    VARCHAR_500 clave_almacenamiento
+    VARCHAR_100 tipo_mime
+    BIGINT tamano_bytes
+    CHAR_64 huella_sha256
+    VARCHAR_500 descripcion
+    BIGINT cargado_por FK
+    TIMESTAMP fecha_carga
+    VARCHAR_15 estado_archivo
+  }
+  VERIFICACION {
+    BIGINT id_verificacion PK
+    BIGINT id_orden FK
+    INTEGER numero_ciclo
+    BIGINT id_verificador FK
+    VARCHAR_20 dictamen
+    VARCHAR_1500 observacion
+    TIMESTAMP fecha_verificacion
+    BOOLEAN vigente
+  }
+  BLOQUEO_ORDEN {
+    BIGINT id_bloqueo PK
+    BIGINT id_orden FK
+    INTEGER numero_ciclo
+    VARCHAR_1000 motivo
+    BIGINT abierto_por FK
+    TIMESTAMP fecha_apertura
+    VARCHAR_1000 resolucion
+    BIGINT cerrado_por FK
+    TIMESTAMP fecha_cierre
+  }
+  HISTORIAL_INCIDENCIA {
+    BIGINT id_historial_incidencia PK
+    BIGINT id_incidencia FK
+    BIGINT id_estado_origen FK
+    BIGINT id_estado_destino FK
+    BIGINT cambiado_por FK
+    TIMESTAMP fecha_cambio
+    VARCHAR_1000 motivo
+    VARCHAR_64 referencia_operacion
+  }
+  HISTORIAL_ORDEN {
+    BIGINT id_historial_orden PK
+    BIGINT id_orden FK
+    INTEGER numero_ciclo
+    BIGINT id_estado_origen FK
+    BIGINT id_estado_destino FK
+    BIGINT cambiado_por FK
+    TIMESTAMP fecha_cambio
+    VARCHAR_1000 motivo
+    VARCHAR_64 referencia_operacion
+  }
+  USUARIO ||--o{ USUARIO_ROL : FK
+  ROL ||--o{ USUARIO_ROL : FK
+  SEDE ||--o{ ESPACIO : FK
+  ESPACIO ||--o{ RESPONSABLE_ESPACIO : FK
+  USUARIO ||--o{ RESPONSABLE_ESPACIO : FK
+  USUARIO ||--o{ INCIDENCIA : FK
+  ESPACIO ||--o{ INCIDENCIA : FK
+  CATEGORIA_INCIDENCIA ||--o{ INCIDENCIA : FK
+  PRIORIDAD ||--o{ INCIDENCIA : FK
+  ESTADO_INCIDENCIA ||--o{ INCIDENCIA : FK
+  INCIDENCIA ||--o{ ACLARACION_INCIDENCIA : FK
+  USUARIO ||--o{ ACLARACION_INCIDENCIA : FK
+  USUARIO ||--o{ ACLARACION_INCIDENCIA : FK
+  ESPACIO ||--o{ ORDEN_TRABAJO : FK
+  PRIORIDAD ||--o{ ORDEN_TRABAJO : FK
+  ESTADO_ORDEN ||--o{ ORDEN_TRABAJO : FK
+  USUARIO ||--o{ ORDEN_TRABAJO : FK
+  ORDEN_TRABAJO ||--o{ ORDEN_INCIDENCIA : FK
+  INCIDENCIA ||--o{ ORDEN_INCIDENCIA : FK
+  USUARIO ||--o{ ORDEN_INCIDENCIA : FK
+  ORDEN_TRABAJO ||--o{ ASIGNACION_TECNICA : FK
+  USUARIO ||--o{ ASIGNACION_TECNICA : FK
+  USUARIO ||--o{ ASIGNACION_TECNICA : FK
+  ASIGNACION_TECNICA ||--o{ INTERVENCION : FK
+  INCIDENCIA ||--o{ EVIDENCIA : FK
+  INTERVENCION ||--o{ EVIDENCIA : FK
+  USUARIO ||--o{ EVIDENCIA : FK
+  ORDEN_TRABAJO ||--o{ VERIFICACION : FK
+  USUARIO ||--o{ VERIFICACION : FK
+  ORDEN_TRABAJO ||--o{ BLOQUEO_ORDEN : FK
+  USUARIO ||--o{ BLOQUEO_ORDEN : FK
+  USUARIO ||--o{ BLOQUEO_ORDEN : FK
+  INCIDENCIA ||--o{ HISTORIAL_INCIDENCIA : FK
+  ESTADO_INCIDENCIA ||--o{ HISTORIAL_INCIDENCIA : FK
+  ESTADO_INCIDENCIA ||--o{ HISTORIAL_INCIDENCIA : FK
+  USUARIO ||--o{ HISTORIAL_INCIDENCIA : FK
+  ORDEN_TRABAJO ||--o{ HISTORIAL_ORDEN : FK
+  ESTADO_ORDEN ||--o{ HISTORIAL_ORDEN : FK
+  ESTADO_ORDEN ||--o{ HISTORIAL_ORDEN : FK
+  USUARIO ||--o{ HISTORIAL_ORDEN : FK

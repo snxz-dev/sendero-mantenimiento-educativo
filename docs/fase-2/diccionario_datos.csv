@@ -1,0 +1,188 @@
+﻿alcance,tabla,propósito,campo,tipo,PK/FK,NULL,UNIQUE,valor_por_defecto,referencia,descripción
+MVP,PREF_ROL,Catálogo de funciones autorizadas.,id_rol,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_ROL,Catálogo de funciones autorizadas.,codigo,VARCHAR(40),,NO,SÍ,,,Código estable del rol.
+MVP,PREF_ROL,Catálogo de funciones autorizadas.,nombre,VARCHAR(100),,NO,NO,,,Nombre visible.
+MVP,PREF_ROL,Catálogo de funciones autorizadas.,activo,BOOLEAN,,NO,NO,TRUE,,Disponibilidad para nuevas asignaciones.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,id_usuario,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,nombre_acceso,VARCHAR(80),,NO,SÍ,,,Identificador de inicio de sesión.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,credencial_hash,VARCHAR(255),,NO,NO,,,Derivado seguro de la credencial; nunca contraseña en texto plano.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,nombres,VARCHAR(120),,NO,NO,,,Nombres de la persona.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,apellidos,VARCHAR(120),,NO,NO,,,Apellidos de la persona.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,correo,VARCHAR(254),,SÍ,SÍ,,,Correo institucional opcional.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,activo,BOOLEAN,,NO,NO,TRUE,,Habilitación de acceso.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,fecha_creacion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Fecha de alta.
+MVP,PREF_USUARIO,Persona con acceso o participación registrada.,fecha_actualizacion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Última actualización declarada.
+MVP,PREF_USUARIO_ROL,Asignación histórica de roles a usuarios.,id_usuario,BIGINT,"PK,FK",NO,NO,,PREF_USUARIO.id_usuario,Usuario asignado.
+MVP,PREF_USUARIO_ROL,Asignación histórica de roles a usuarios.,id_rol,BIGINT,"PK,FK",NO,NO,,PREF_ROL.id_rol,Rol asignado.
+MVP,PREF_USUARIO_ROL,Asignación histórica de roles a usuarios.,fecha_desde,TIMESTAMP,PK,NO,NO,CURRENT_TIMESTAMP,,Inicio de vigencia.
+MVP,PREF_USUARIO_ROL,Asignación histórica de roles a usuarios.,fecha_hasta,TIMESTAMP,,SÍ,NO,,,Fin de vigencia; NULL significa vigente.
+MVP,PREF_SEDE,Sede física de la institución.,id_sede,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_SEDE,Sede física de la institución.,codigo,VARCHAR(30),,NO,SÍ,,,Código institucional.
+MVP,PREF_SEDE,Sede física de la institución.,nombre,VARCHAR(120),,NO,NO,,,Nombre de la sede.
+MVP,PREF_SEDE,Sede física de la institución.,direccion_referencia,VARCHAR(300),,SÍ,NO,,,Referencia descriptiva de ubicación.
+MVP,PREF_SEDE,Sede física de la institución.,activo,BOOLEAN,,NO,NO,TRUE,,Disponibilidad para nuevos registros.
+MVP,PREF_ESPACIO,Área física donde se reportan y ejecutan trabajos.,id_espacio,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_ESPACIO,Área física donde se reportan y ejecutan trabajos.,id_sede,BIGINT,FK,NO,NO,,PREF_SEDE.id_sede,Sede a la que pertenece.
+MVP,PREF_ESPACIO,Área física donde se reportan y ejecutan trabajos.,codigo,VARCHAR(40),,NO,NO,,,Código único dentro de la sede.
+MVP,PREF_ESPACIO,Área física donde se reportan y ejecutan trabajos.,nombre,VARCHAR(120),,NO,NO,,,Nombre visible.
+MVP,PREF_ESPACIO,Área física donde se reportan y ejecutan trabajos.,tipo,VARCHAR(60),,NO,NO,,,"Aula, laboratorio, oficina u otro tipo."
+MVP,PREF_ESPACIO,Área física donde se reportan y ejecutan trabajos.,ubicacion_referencia,VARCHAR(250),,SÍ,NO,,,"Piso, bloque u otra referencia."
+MVP,PREF_ESPACIO,Área física donde se reportan y ejecutan trabajos.,activo,BOOLEAN,,NO,NO,TRUE,,Disponibilidad para nuevos registros.
+MVP,PREF_RESPONSABLE_ESPACIO,Autoriza quién puede verificar trabajos de un espacio.,id_responsabilidad,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_RESPONSABLE_ESPACIO,Autoriza quién puede verificar trabajos de un espacio.,id_espacio,BIGINT,FK,NO,NO,,PREF_ESPACIO.id_espacio,Espacio administrado.
+MVP,PREF_RESPONSABLE_ESPACIO,Autoriza quién puede verificar trabajos de un espacio.,id_usuario,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Responsable autorizado.
+MVP,PREF_RESPONSABLE_ESPACIO,Autoriza quién puede verificar trabajos de un espacio.,fecha_desde,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Inicio de vigencia.
+MVP,PREF_RESPONSABLE_ESPACIO,Autoriza quién puede verificar trabajos de un espacio.,fecha_hasta,TIMESTAMP,,SÍ,NO,,,Fin de vigencia.
+MVP,PREF_RESPONSABLE_ESPACIO,Autoriza quién puede verificar trabajos de un espacio.,es_principal,BOOLEAN,,NO,NO,FALSE,,Indica responsable preferente.
+MVP,PREF_CATEGORIA_INCIDENCIA,Clasificación funcional del desperfecto.,id_categoria,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_CATEGORIA_INCIDENCIA,Clasificación funcional del desperfecto.,codigo,VARCHAR(30),,NO,SÍ,,,Código estable.
+MVP,PREF_CATEGORIA_INCIDENCIA,Clasificación funcional del desperfecto.,nombre,VARCHAR(100),,NO,NO,,,Nombre visible.
+MVP,PREF_CATEGORIA_INCIDENCIA,Clasificación funcional del desperfecto.,descripcion,VARCHAR(500),,SÍ,NO,,,Criterio de uso.
+MVP,PREF_CATEGORIA_INCIDENCIA,Clasificación funcional del desperfecto.,activo,BOOLEAN,,NO,NO,TRUE,,Disponibilidad para nuevos reportes.
+MVP,PREF_PRIORIDAD,Catálogo ordenado de prioridad operativa.,id_prioridad,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_PRIORIDAD,Catálogo ordenado de prioridad operativa.,codigo,VARCHAR(20),,NO,SÍ,,,"BAJA, MEDIA, ALTA o CRITICA."
+MVP,PREF_PRIORIDAD,Catálogo ordenado de prioridad operativa.,nombre,VARCHAR(60),,NO,NO,,,Nombre visible.
+MVP,PREF_PRIORIDAD,Catálogo ordenado de prioridad operativa.,nivel_orden,INTEGER,,NO,SÍ,,,Orden relativo; no representa tiempo máximo.
+MVP,PREF_PRIORIDAD,Catálogo ordenado de prioridad operativa.,activo,BOOLEAN,,NO,NO,TRUE,,Disponibilidad para clasificación.
+MVP,PREF_ESTADO_INCIDENCIA,Catálogo del ciclo de vida de incidencias.,id_estado_incidencia,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_ESTADO_INCIDENCIA,Catálogo del ciclo de vida de incidencias.,codigo,VARCHAR(40),,NO,SÍ,,,Código de estado.
+MVP,PREF_ESTADO_INCIDENCIA,Catálogo del ciclo de vida de incidencias.,nombre,VARCHAR(100),,NO,NO,,,Etiqueta visible.
+MVP,PREF_ESTADO_INCIDENCIA,Catálogo del ciclo de vida de incidencias.,es_terminal,BOOLEAN,,NO,NO,FALSE,,Indica si no admite transición ordinaria.
+MVP,PREF_ESTADO_INCIDENCIA,Catálogo del ciclo de vida de incidencias.,activo,BOOLEAN,,NO,NO,TRUE,,Disponibilidad para configuración futura.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,id_incidencia,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,codigo,VARCHAR(30),,NO,SÍ,,,Código público del reporte.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,id_solicitante,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Autor del reporte.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,id_espacio,BIGINT,FK,NO,NO,,PREF_ESPACIO.id_espacio,Espacio afectado.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,id_categoria,BIGINT,FK,NO,NO,,PREF_CATEGORIA_INCIDENCIA.id_categoria,Categoría del problema.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,id_prioridad,BIGINT,FK,SÍ,NO,,PREF_PRIORIDAD.id_prioridad,Prioridad confirmada durante revisión.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,id_estado_incidencia,BIGINT,FK,NO,NO,,PREF_ESTADO_INCIDENCIA.id_estado_incidencia,Estado vigente.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,descripcion,VARCHAR(2000),,NO,NO,,,Descripción del desperfecto.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,urgencia_declarada,BOOLEAN,,NO,NO,FALSE,,Percepción inicial del solicitante.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,fecha_registro,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento del reporte.
+MVP,PREF_INCIDENCIA,Necesidad reportada por un solicitante.,fecha_actualizacion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Última actualización declarada.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,id_aclaracion,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,id_incidencia,BIGINT,FK,NO,NO,,PREF_INCIDENCIA.id_incidencia,Incidencia aclarada.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,pregunta,VARCHAR(1000),,NO,NO,,,Información solicitada.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,preguntado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Coordinador que pregunta.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,fecha_pregunta,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento de la pregunta.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,respuesta,VARCHAR(2000),,SÍ,NO,,,Respuesta aportada.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,respondido_por,BIGINT,FK,SÍ,NO,,PREF_USUARIO.id_usuario,Usuario que responde.
+MVP,PREF_ACLARACION_INCIDENCIA,Pregunta del coordinador y respuesta del solicitante.,fecha_respuesta,TIMESTAMP,,SÍ,NO,,,Momento de respuesta.
+MVP,PREF_ESTADO_ORDEN,Catálogo del ciclo de vida de órdenes.,id_estado_orden,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_ESTADO_ORDEN,Catálogo del ciclo de vida de órdenes.,codigo,VARCHAR(40),,NO,SÍ,,,Código de estado.
+MVP,PREF_ESTADO_ORDEN,Catálogo del ciclo de vida de órdenes.,nombre,VARCHAR(100),,NO,NO,,,Etiqueta visible.
+MVP,PREF_ESTADO_ORDEN,Catálogo del ciclo de vida de órdenes.,es_terminal,BOOLEAN,,NO,NO,FALSE,,Indica si finaliza el ciclo ordinario.
+MVP,PREF_ESTADO_ORDEN,Catálogo del ciclo de vida de órdenes.,activo,BOOLEAN,,NO,NO,TRUE,,Disponibilidad para configuración futura.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",id_orden,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",codigo,VARCHAR(30),,NO,SÍ,,,Código público de la orden.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",tipo_orden,VARCHAR(20),,NO,NO,'CORRECTIVA',,CORRECTIVA en MVP; PREVENTIVA queda preparada.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",id_espacio,BIGINT,FK,NO,NO,,PREF_ESPACIO.id_espacio,Espacio intervenido.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",id_prioridad,BIGINT,FK,NO,NO,,PREF_PRIORIDAD.id_prioridad,Prioridad operativa de la orden.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",id_estado_orden,BIGINT,FK,NO,NO,,PREF_ESTADO_ORDEN.id_estado_orden,Estado vigente.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",alcance,VARCHAR(2000),,NO,NO,,,Trabajo esperado.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",creado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Coordinador creador.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",ciclo_actual,INTEGER,,NO,NO,1,,Número del ciclo vigente; aumenta al reabrir.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",fecha_creacion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento de creación.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",fecha_fin_tecnica,TIMESTAMP,,SÍ,NO,,,Última finalización técnica vigente.
+MVP,PREF_ORDEN_TRABAJO,"Unidad de planificación, ejecución y cierre del mantenimiento.",fecha_cierre,TIMESTAMP,,SÍ,NO,,,Último cierre formal.
+MVP,PREF_ORDEN_INCIDENCIA,Vínculo entre orden correctiva e incidencia; en MVP se usa un reporte principal.,id_orden,BIGINT,"PK,FK",NO,NO,,PREF_ORDEN_TRABAJO.id_orden,Orden vinculada.
+MVP,PREF_ORDEN_INCIDENCIA,Vínculo entre orden correctiva e incidencia; en MVP se usa un reporte principal.,id_incidencia,BIGINT,"PK,FK",NO,NO,,PREF_INCIDENCIA.id_incidencia,Incidencia atendida.
+MVP,PREF_ORDEN_INCIDENCIA,Vínculo entre orden correctiva e incidencia; en MVP se usa un reporte principal.,vinculado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Coordinador que vincula.
+MVP,PREF_ORDEN_INCIDENCIA,Vínculo entre orden correctiva e incidencia; en MVP se usa un reporte principal.,fecha_vinculacion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento del vínculo.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,id_asignacion,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,id_orden,BIGINT,FK,NO,NO,,PREF_ORDEN_TRABAJO.id_orden,Orden asignada.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,numero_ciclo,INTEGER,,NO,NO,,,Ciclo al que corresponde.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,id_tecnico,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Usuario técnico.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,tipo_asignacion,VARCHAR(20),,NO,NO,'RESPONSABLE',,RESPONSABLE en MVP; COLABORADOR queda preparado.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,programada_inicio,TIMESTAMP,,NO,NO,,,Inicio previsto.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,programada_fin,TIMESTAMP,,NO,NO,,,Fin previsto.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,asignado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Coordinador que asigna.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,fecha_asignacion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento de asignación.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,vigente,BOOLEAN,,NO,NO,TRUE,,Indica asignación actual.
+MVP,PREF_ASIGNACION_TECNICA,Responsabilidad y programación de un técnico por ciclo.,fecha_fin_vigencia,TIMESTAMP,,SÍ,NO,,,Fin de la asignación si fue reemplazada.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,id_intervencion,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,id_asignacion,BIGINT,FK,NO,NO,,PREF_ASIGNACION_TECNICA.id_asignacion,Asignación que habilita al técnico.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,fecha_inicio,TIMESTAMP,,NO,NO,,,Inicio real.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,fecha_fin,TIMESTAMP,,SÍ,NO,,,Fin real.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,actividad,VARCHAR(2000),,NO,NO,,,Trabajo efectuado.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,resultado,VARCHAR(2000),,SÍ,NO,,,Resultado observado.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,estado_registro,VARCHAR(10),,NO,NO,'ABIERTO',,ABIERTO o CERRADO.
+MVP,PREF_INTERVENCION,Actividad técnica concreta realizada dentro de una asignación.,fecha_registro,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Creación del registro.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,id_evidencia,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,id_incidencia,BIGINT,FK,SÍ,NO,,PREF_INCIDENCIA.id_incidencia,Reporte al que pertenece.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,id_intervencion,BIGINT,FK,SÍ,NO,,PREF_INTERVENCION.id_intervencion,Intervención a la que pertenece.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,nombre_original,VARCHAR(255),,NO,NO,,,Nombre recibido para presentación controlada.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,clave_almacenamiento,VARCHAR(500),,NO,SÍ,,,Referencia opaca al archivo externo.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,tipo_mime,VARCHAR(100),,NO,NO,,,Tipo de contenido validado.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,tamano_bytes,BIGINT,,NO,NO,,,Tamaño validado del archivo.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,huella_sha256,CHAR(64),,NO,NO,,,Huella de integridad del binario.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,descripcion,VARCHAR(500),,SÍ,NO,,,Descripción accesible y contexto.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,cargado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Usuario que aporta la evidencia.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,fecha_carga,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento de confirmación.
+MVP,PREF_EVIDENCIA,Metadatos de una fotografía vinculada a incidencia o intervención; el binario se almacena fuera de la tabla.,estado_archivo,VARCHAR(15),,NO,NO,'DISPONIBLE',,"DISPONIBLE, FALLIDA o RETIRADA."
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,id_verificacion,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,id_orden,BIGINT,FK,NO,NO,,PREF_ORDEN_TRABAJO.id_orden,Orden verificada.
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,numero_ciclo,INTEGER,,NO,NO,,,Ciclo evaluado.
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,id_verificador,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Responsable del espacio que emite el dictamen.
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,dictamen,VARCHAR(20),,NO,NO,,,CONFORME o NO_CONFORME.
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,observacion,VARCHAR(1500),,SÍ,NO,,,Fundamento o comentarios.
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,fecha_verificacion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento del dictamen.
+MVP,PREF_VERIFICACION,Dictamen independiente sobre el resultado de un ciclo de orden.,vigente,BOOLEAN,,NO,NO,TRUE,,Vigencia para el cierre del ciclo.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,id_bloqueo,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,id_orden,BIGINT,FK,NO,NO,,PREF_ORDEN_TRABAJO.id_orden,Orden bloqueada.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,numero_ciclo,INTEGER,,NO,NO,,,Ciclo afectado.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,motivo,VARCHAR(1000),,NO,NO,,,Impedimento documentado.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,abierto_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Técnico responsable o coordinador.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,fecha_apertura,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Inicio del bloqueo.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,resolucion,VARCHAR(1000),,SÍ,NO,,,Cómo se atendió el impedimento.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,cerrado_por,BIGINT,FK,SÍ,NO,,PREF_USUARIO.id_usuario,Usuario que autoriza o registra resolución.
+MVP,PREF_BLOQUEO_ORDEN,Impedimento y posterior resolución durante un ciclo.,fecha_cierre,TIMESTAMP,,SÍ,NO,,,Fin del bloqueo.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,id_historial_incidencia,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,id_incidencia,BIGINT,FK,NO,NO,,PREF_INCIDENCIA.id_incidencia,Incidencia afectada.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,id_estado_origen,BIGINT,FK,SÍ,NO,,PREF_ESTADO_INCIDENCIA.id_estado_incidencia,Estado anterior; NULL al crear.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,id_estado_destino,BIGINT,FK,NO,NO,,PREF_ESTADO_INCIDENCIA.id_estado_incidencia,Nuevo estado.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,cambiado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Autor del cambio.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,fecha_cambio,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento del cambio.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,motivo,VARCHAR(1000),,SÍ,NO,,,Motivo cuando la transición lo exige.
+MVP,PREF_HISTORIAL_INCIDENCIA,Transiciones inmutables del estado de una incidencia.,referencia_operacion,VARCHAR(64),,NO,NO,,,Identificador que vincula cambios de una misma operación.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,id_historial_orden,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,id_orden,BIGINT,FK,NO,NO,,PREF_ORDEN_TRABAJO.id_orden,Orden afectada.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,numero_ciclo,INTEGER,,NO,NO,,,Ciclo afectado.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,id_estado_origen,BIGINT,FK,SÍ,NO,,PREF_ESTADO_ORDEN.id_estado_orden,Estado anterior; NULL al crear.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,id_estado_destino,BIGINT,FK,NO,NO,,PREF_ESTADO_ORDEN.id_estado_orden,Nuevo estado.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,cambiado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Autor del cambio.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,fecha_cambio,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento del cambio.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,motivo,VARCHAR(1000),,SÍ,NO,,,Motivo cuando la transición lo exige.
+MVP,PREF_HISTORIAL_ORDEN,Transiciones inmutables del estado de una orden.,referencia_operacion,VARCHAR(64),,NO,NO,,,Identificador que vincula cambios de una misma operación.
+AMPLIACION,PREF_DUPLICIDAD_INCIDENCIA,Vínculo controlado entre reporte duplicado y principal.,id_incidencia_duplicada,BIGINT,"PK,FK",NO,NO,,PREF_INCIDENCIA.id_incidencia,Incidencia marcada duplicada.
+AMPLIACION,PREF_DUPLICIDAD_INCIDENCIA,Vínculo controlado entre reporte duplicado y principal.,id_incidencia_principal,BIGINT,FK,NO,NO,,PREF_INCIDENCIA.id_incidencia,Incidencia que concentra el seguimiento.
+AMPLIACION,PREF_DUPLICIDAD_INCIDENCIA,Vínculo controlado entre reporte duplicado y principal.,marcado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Coordinador que decide.
+AMPLIACION,PREF_DUPLICIDAD_INCIDENCIA,Vínculo controlado entre reporte duplicado y principal.,fecha_marcado,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento de decisión.
+AMPLIACION,PREF_DUPLICIDAD_INCIDENCIA,Vínculo controlado entre reporte duplicado y principal.,motivo,VARCHAR(1000),,NO,NO,,,Fundamento de duplicidad.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,id_solicitud_cancelacion,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,id_incidencia,BIGINT,FK,SÍ,NO,,PREF_INCIDENCIA.id_incidencia,Incidencia objetivo.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,id_orden,BIGINT,FK,SÍ,NO,,PREF_ORDEN_TRABAJO.id_orden,Orden objetivo.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,solicitado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Autor de la solicitud.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,motivo_solicitud,VARCHAR(1000),,NO,NO,,,Fundamento de solicitud.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,fecha_solicitud,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento de solicitud.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,resultado,VARCHAR(15),,NO,NO,'PENDIENTE',,"PENDIENTE, ACEPTADA o RECHAZADA."
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,resuelto_por,BIGINT,FK,SÍ,NO,,PREF_USUARIO.id_usuario,Coordinador que resuelve.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,fecha_resolucion,TIMESTAMP,,SÍ,NO,,,Momento de resolución.
+AMPLIACION,PREF_SOLICITUD_CANCELACION,Solicitud y resolución formal de cancelación.,motivo_resolucion,VARCHAR(1000),,SÍ,NO,,,Fundamento de la decisión.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,id_correccion,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,tipo_registro,VARCHAR(60),,NO,NO,,,Tipo lógico del registro corregido.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,id_registro,BIGINT,,NO,NO,,,Identificador del registro corregido.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,nombre_campo,VARCHAR(80),,NO,NO,,,Campo corregido.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,valor_anterior,VARCHAR(4000),,SÍ,NO,,,Representación anterior.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,valor_nuevo,VARCHAR(4000),,SÍ,NO,,,Representación nueva.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,motivo,VARCHAR(1000),,NO,NO,,,Justificación.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,autorizado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Coordinador que autoriza.
+AMPLIACION,PREF_CORRECCION_AUDITADA,Corrección excepcional conservando valores anterior y nuevo.,fecha_correccion,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento de corrección.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,id_version_programacion,BIGINT,PK,NO,NO,IDENTITY,,Identificador interno.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,id_asignacion,BIGINT,FK,NO,NO,,PREF_ASIGNACION_TECNICA.id_asignacion,Asignación versionada.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,numero_version,INTEGER,,NO,NO,,,Secuencia de versión.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,programada_inicio,TIMESTAMP,,NO,NO,,,Inicio de esa versión.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,programada_fin,TIMESTAMP,,NO,NO,,,Fin de esa versión.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,registrado_por,BIGINT,FK,NO,NO,,PREF_USUARIO.id_usuario,Coordinador que cambia.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,fecha_registro,TIMESTAMP,,NO,NO,CURRENT_TIMESTAMP,,Momento del cambio.
+AMPLIACION,PREF_VERSION_PROGRAMACION,Versiones detalladas de programación y reasignación.,motivo,VARCHAR(1000),,NO,NO,,,Razón de reprogramación.
