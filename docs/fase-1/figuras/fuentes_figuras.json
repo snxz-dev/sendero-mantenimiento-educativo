@@ -1,0 +1,1777 @@
+[
+  {
+    "file": "figura_01_asis",
+    "width": 1600,
+    "height": 980,
+    "title": "Figura 1. Flujo actual de atención de incidencias",
+    "subtitle": "AS-IS · Representación del escenario aprobado; no es observación de campo.",
+    "nodes": [
+      {
+        "id": "deteccion",
+        "x": 80,
+        "y": 200,
+        "w": 400,
+        "h": 135,
+        "title": "1. Detectar desperfecto",
+        "sub": "Docente o responsable",
+        "kind": "normal"
+      },
+      {
+        "id": "avisos",
+        "x": 600,
+        "y": 200,
+        "w": 400,
+        "h": 135,
+        "title": "2. Comunicar aviso",
+        "sub": "Llamada, mensaje o conversación",
+        "kind": "normal"
+      },
+      {
+        "id": "registro",
+        "x": 1120,
+        "y": 200,
+        "w": 400,
+        "h": 135,
+        "title": "3. Anotar parcialmente",
+        "sub": "Coordinador · hoja de cálculo",
+        "kind": "normal"
+      },
+      {
+        "id": "asignar",
+        "x": 1120,
+        "y": 455,
+        "w": 400,
+        "h": 135,
+        "title": "4. Encargar trabajo",
+        "sub": "Consulta y asignación por teléfono",
+        "kind": "normal"
+      },
+      {
+        "id": "ejecutar",
+        "x": 600,
+        "y": 455,
+        "w": 400,
+        "h": 135,
+        "title": "5. Intervenir",
+        "sub": "Técnico · notas y fotografías",
+        "kind": "normal"
+      },
+      {
+        "id": "interpretar",
+        "x": 80,
+        "y": 455,
+        "w": 400,
+        "h": 135,
+        "title": "6. Interpretar resultado",
+        "sub": "Actualización sin verificación formal",
+        "kind": "normal"
+      },
+      {
+        "id": "reiterar",
+        "x": 80,
+        "y": 700,
+        "w": 400,
+        "h": 130,
+        "title": "7. Nuevo aviso si persiste",
+        "sub": "Sin vínculo garantizado al anterior",
+        "kind": "exception"
+      },
+      {
+        "id": "problema",
+        "x": 600,
+        "y": 700,
+        "w": 920,
+        "h": 130,
+        "title": "Pérdida de trazabilidad",
+        "sub": "Reportes, asignaciones, evidencias y aceptación no forman un historial común.",
+        "kind": "note"
+      }
+    ],
+    "edges": [
+      {
+        "source": "deteccion",
+        "target": "avisos",
+        "points": [
+          [
+            480,
+            267
+          ],
+          [
+            600,
+            267
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "avisos",
+        "target": "registro",
+        "points": [
+          [
+            1000,
+            267
+          ],
+          [
+            1120,
+            267
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "registro",
+        "target": "asignar",
+        "points": [
+          [
+            1320,
+            335
+          ],
+          [
+            1320,
+            455
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "asignar",
+        "target": "ejecutar",
+        "points": [
+          [
+            1120,
+            522
+          ],
+          [
+            1000,
+            522
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "ejecutar",
+        "target": "interpretar",
+        "points": [
+          [
+            600,
+            522
+          ],
+          [
+            480,
+            522
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "interpretar",
+        "target": "reiterar",
+        "points": [
+          [
+            280,
+            590
+          ],
+          [
+            280,
+            700
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "reiterar",
+        "target": "avisos",
+        "points": [
+          [
+            280,
+            830
+          ],
+          [
+            280,
+            885
+          ],
+          [
+            1555,
+            885
+          ],
+          [
+            1555,
+            165
+          ],
+          [
+            800,
+            165
+          ],
+          [
+            800,
+            200
+          ]
+        ],
+        "label": "Reiteración",
+        "dashed": true,
+        "label_position": [
+          1320,
+          880
+        ]
+      }
+    ]
+  },
+  {
+    "file": "figura_02_tobe",
+    "width": 1600,
+    "height": 1170,
+    "title": "Figura 2. Flujo propuesto de atención y mantenimiento",
+    "subtitle": "TO-BE · La finalización técnica, la verificación y el cierre son decisiones distintas.",
+    "nodes": [
+      {
+        "id": "reporte",
+        "x": 90,
+        "y": 190,
+        "w": 390,
+        "h": 120,
+        "title": "1. Reportar",
+        "sub": "Solicitante · web",
+        "kind": "normal"
+      },
+      {
+        "id": "revision",
+        "x": 605,
+        "y": 190,
+        "w": 390,
+        "h": 120,
+        "title": "2. Revisar y admitir",
+        "sub": "Coordinador · escritorio",
+        "kind": "normal"
+      },
+      {
+        "id": "orden",
+        "x": 1120,
+        "y": 190,
+        "w": 390,
+        "h": 120,
+        "title": "3. Crear orden",
+        "sub": "Correctiva o preventiva",
+        "kind": "normal"
+      },
+      {
+        "id": "programar",
+        "x": 1120,
+        "y": 425,
+        "w": 390,
+        "h": 120,
+        "title": "4. Programar y asignar",
+        "sub": "Coordinador · escritorio",
+        "kind": "normal"
+      },
+      {
+        "id": "ejecutar",
+        "x": 605,
+        "y": 425,
+        "w": 390,
+        "h": 120,
+        "title": "5. Ejecutar y documentar",
+        "sub": "Técnico · móvil",
+        "kind": "normal"
+      },
+      {
+        "id": "revisar",
+        "x": 90,
+        "y": 425,
+        "w": 390,
+        "h": 120,
+        "title": "6. Revisar finalización",
+        "sub": "Coordinador · escritorio",
+        "kind": "normal"
+      },
+      {
+        "id": "verificar",
+        "x": 90,
+        "y": 690,
+        "w": 390,
+        "h": 120,
+        "title": "7. Verificar resultado",
+        "sub": "Responsable del espacio · web",
+        "kind": "normal"
+      },
+      {
+        "id": "cerrar",
+        "x": 605,
+        "y": 690,
+        "w": 390,
+        "h": 120,
+        "title": "8. Formalizar cierre",
+        "sub": "Coordinador · escritorio",
+        "kind": "success"
+      },
+      {
+        "id": "historial",
+        "x": 1120,
+        "y": 690,
+        "w": 390,
+        "h": 120,
+        "title": "9. Consultar trazabilidad",
+        "sub": "Historial e indicadores",
+        "kind": "success"
+      },
+      {
+        "id": "excepciones",
+        "x": 90,
+        "y": 940,
+        "w": 1420,
+        "h": 130,
+        "title": "Rutas controladas",
+        "sub": "Aclaración, duplicidad, descarte, bloqueo, devolución, cancelación y reapertura. Todas conservan responsables, motivos y fechas.",
+        "kind": "note"
+      }
+    ],
+    "edges": [
+      {
+        "source": "reporte",
+        "target": "revision",
+        "points": [
+          [
+            480,
+            250
+          ],
+          [
+            605,
+            250
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "revision",
+        "target": "orden",
+        "points": [
+          [
+            995,
+            250
+          ],
+          [
+            1120,
+            250
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "orden",
+        "target": "programar",
+        "points": [
+          [
+            1315,
+            310
+          ],
+          [
+            1315,
+            425
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "programar",
+        "target": "ejecutar",
+        "points": [
+          [
+            1120,
+            485
+          ],
+          [
+            995,
+            485
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "ejecutar",
+        "target": "revisar",
+        "points": [
+          [
+            605,
+            485
+          ],
+          [
+            480,
+            485
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "revisar",
+        "target": "verificar",
+        "points": [
+          [
+            285,
+            545
+          ],
+          [
+            285,
+            690
+          ]
+        ],
+        "label": "Conforme",
+        "dashed": false,
+        "label_position": [
+          285,
+          625
+        ]
+      },
+      {
+        "source": "verificar",
+        "target": "cerrar",
+        "points": [
+          [
+            480,
+            750
+          ],
+          [
+            605,
+            750
+          ]
+        ],
+        "label": "Acepta",
+        "dashed": false,
+        "label_position": [
+          545,
+          735
+        ]
+      },
+      {
+        "source": "cerrar",
+        "target": "historial",
+        "points": [
+          [
+            995,
+            750
+          ],
+          [
+            1120,
+            750
+          ]
+        ],
+        "label": "",
+        "dashed": false,
+        "label_position": null
+      },
+      {
+        "source": "verificar",
+        "target": "ejecutar",
+        "points": [
+          [
+            400,
+            690
+          ],
+          [
+            400,
+            640
+          ],
+          [
+            800,
+            640
+          ],
+          [
+            800,
+            545
+          ]
+        ],
+        "label": "Inconformidad",
+        "dashed": true,
+        "label_position": [
+          600,
+          630
+        ]
+      },
+      {
+        "source": "revisar",
+        "target": "ejecutar",
+        "points": [
+          [
+            285,
+            425
+          ],
+          [
+            285,
+            370
+          ],
+          [
+            800,
+            370
+          ],
+          [
+            800,
+            425
+          ]
+        ],
+        "label": "Devolución",
+        "dashed": true,
+        "label_position": [
+          540,
+          360
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "x": 1100,
+        "y": 160,
+        "text": "La preventiva inicia en 3.",
+        "size": 20,
+        "width": 40
+      }
+    ]
+  },
+  {
+    "file": "figura_03_plataformas",
+    "width": 1600,
+    "height": 1180,
+    "title": "Figura 3. Actores y distribución funcional por plataforma",
+    "subtitle": "Cada plataforma cubre un contexto de trabajo. “—” indica una función no exigida en esa plataforma.",
+    "nodes": [
+      {
+        "id": "head0",
+        "x": 65,
+        "y": 170,
+        "w": 310,
+        "h": 70,
+        "title": "Actor",
+        "sub": "",
+        "kind": "note"
+      },
+      {
+        "id": "head1",
+        "x": 390,
+        "y": 170,
+        "w": 370,
+        "h": 70,
+        "title": "Web",
+        "sub": "",
+        "kind": "note"
+      },
+      {
+        "id": "head2",
+        "x": 775,
+        "y": 170,
+        "w": 370,
+        "h": 70,
+        "title": "Escritorio",
+        "sub": "",
+        "kind": "note"
+      },
+      {
+        "id": "head3",
+        "x": 1160,
+        "y": 170,
+        "w": 370,
+        "h": 70,
+        "title": "Móvil",
+        "sub": "",
+        "kind": "note"
+      },
+      {
+        "id": "r0c0",
+        "x": 65,
+        "y": 260,
+        "w": 310,
+        "h": 105,
+        "title": "Solicitante",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r0c1",
+        "x": 390,
+        "y": 260,
+        "w": 370,
+        "h": 105,
+        "title": "Reportar, aclarar y consultar lo propio",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "r0c2",
+        "x": 775,
+        "y": 260,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r0c3",
+        "x": 1160,
+        "y": 260,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r1c0",
+        "x": 65,
+        "y": 385,
+        "w": 310,
+        "h": 105,
+        "title": "Responsable del espacio",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r1c1",
+        "x": 390,
+        "y": 385,
+        "w": 370,
+        "h": 105,
+        "title": "Verificar y registrar dictamen",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "r1c2",
+        "x": 775,
+        "y": 385,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r1c3",
+        "x": 1160,
+        "y": 385,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r2c0",
+        "x": 65,
+        "y": 510,
+        "w": 310,
+        "h": 105,
+        "title": "Coordinador",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r2c1",
+        "x": 390,
+        "y": 510,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r2c2",
+        "x": 775,
+        "y": 510,
+        "w": 370,
+        "h": 105,
+        "title": "Revisar, programar, asignar, cerrar y reabrir",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "r2c3",
+        "x": 1160,
+        "y": 510,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r3c0",
+        "x": 65,
+        "y": 635,
+        "w": 310,
+        "h": 105,
+        "title": "Técnico",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r3c1",
+        "x": 390,
+        "y": 635,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r3c2",
+        "x": 775,
+        "y": 635,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r3c3",
+        "x": 1160,
+        "y": 635,
+        "w": 370,
+        "h": 105,
+        "title": "Ejecutar, registrar tiempos y fotografías",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "r4c0",
+        "x": 65,
+        "y": 760,
+        "w": 310,
+        "h": 105,
+        "title": "Responsable institucional",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r4c1",
+        "x": 390,
+        "y": 760,
+        "w": 370,
+        "h": 105,
+        "title": "Consultar resúmenes e indicadores",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "r4c2",
+        "x": 775,
+        "y": 760,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r4c3",
+        "x": 1160,
+        "y": 760,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r5c0",
+        "x": 65,
+        "y": 885,
+        "w": 310,
+        "h": 105,
+        "title": "Administrador",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r5c1",
+        "x": 390,
+        "y": 885,
+        "w": 370,
+        "h": 105,
+        "title": "Gestionar accesos y catálogos",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "r5c2",
+        "x": 775,
+        "y": 885,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "r5c3",
+        "x": 1160,
+        "y": 885,
+        "w": 370,
+        "h": 105,
+        "title": "—",
+        "sub": "",
+        "kind": "normal"
+      }
+    ],
+    "edges": [],
+    "matrix": [
+      [
+        "Solicitante",
+        "Reportar, aclarar y consultar lo propio",
+        "—",
+        "—"
+      ],
+      [
+        "Responsable del espacio",
+        "Verificar y registrar dictamen",
+        "—",
+        "—"
+      ],
+      [
+        "Coordinador",
+        "—",
+        "Revisar, programar, asignar, cerrar y reabrir",
+        "—"
+      ],
+      [
+        "Técnico",
+        "—",
+        "—",
+        "Ejecutar, registrar tiempos y fotografías"
+      ],
+      [
+        "Responsable institucional",
+        "Consultar resúmenes e indicadores",
+        "—",
+        "—"
+      ],
+      [
+        "Administrador",
+        "Gestionar accesos y catálogos",
+        "—",
+        "—"
+      ]
+    ],
+    "notes": [
+      {
+        "x": 65,
+        "y": 1060,
+        "text": "Acceso y salida son comunes a cada cliente habilitado. Los permisos también dependen del recurso y la asignación.",
+        "width": 123
+      }
+    ]
+  },
+  {
+    "file": "figura_04_estados_incidencia",
+    "width": 1780,
+    "height": 1310,
+    "title": "Figura 4. Estados y transiciones de una incidencia",
+    "subtitle": "Las etiquetas I01–I14 remiten a la tabla de transiciones con responsables y condiciones.",
+    "nodes": [
+      {
+        "id": "REGISTRADA",
+        "x": 690,
+        "y": 200,
+        "w": 350,
+        "h": 90,
+        "title": "REGISTRADA",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "EN_REVISION",
+        "x": 690,
+        "y": 350,
+        "w": 350,
+        "h": 90,
+        "title": "EN_REVISION",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "ADMITIDA",
+        "x": 690,
+        "y": 500,
+        "w": 350,
+        "h": 90,
+        "title": "ADMITIDA",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "EN_ATENCION",
+        "x": 690,
+        "y": 650,
+        "w": 350,
+        "h": 90,
+        "title": "EN_ATENCION",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "PENDIENTE_VERIFICACION",
+        "x": 690,
+        "y": 800,
+        "w": 350,
+        "h": 105,
+        "title": "PENDIENTE_VERIFICACION",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "RESUELTA",
+        "x": 690,
+        "y": 965,
+        "w": 350,
+        "h": 90,
+        "title": "RESUELTA",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "PENDIENTE_INFORMACION",
+        "x": 1230,
+        "y": 345,
+        "w": 410,
+        "h": 105,
+        "title": "PENDIENTE_INFORMACION",
+        "sub": "",
+        "kind": "exception"
+      },
+      {
+        "id": "DESCARTADA",
+        "x": 130,
+        "y": 350,
+        "w": 330,
+        "h": 90,
+        "title": "DESCARTADA",
+        "sub": "",
+        "kind": "exception"
+      },
+      {
+        "id": "DUPLICADA",
+        "x": 130,
+        "y": 510,
+        "w": 330,
+        "h": 90,
+        "title": "DUPLICADA",
+        "sub": "",
+        "kind": "exception"
+      },
+      {
+        "id": "CANCELADA",
+        "x": 1230,
+        "y": 970,
+        "w": 410,
+        "h": 90,
+        "title": "CANCELADA",
+        "sub": "",
+        "kind": "exception"
+      },
+      {
+        "id": "cancelables",
+        "x": 1230,
+        "y": 660,
+        "w": 410,
+        "h": 170,
+        "title": "Cancelación controlada",
+        "sub": "I13: antes de vincular orden. I14: al cancelar la orden.",
+        "kind": "note"
+      }
+    ],
+    "edges": [
+      {
+        "source": "inicio",
+        "target": "REGISTRADA",
+        "points": [
+          [
+            865,
+            158
+          ],
+          [
+            865,
+            200
+          ]
+        ],
+        "label": "I01",
+        "dashed": false,
+        "label_position": [
+          910,
+          180
+        ]
+      },
+      {
+        "source": "REGISTRADA",
+        "target": "EN_REVISION",
+        "points": [
+          [
+            865,
+            290
+          ],
+          [
+            865,
+            350
+          ]
+        ],
+        "label": "I02",
+        "dashed": false,
+        "label_position": [
+          910,
+          330
+        ]
+      },
+      {
+        "source": "EN_REVISION",
+        "target": "ADMITIDA",
+        "points": [
+          [
+            865,
+            440
+          ],
+          [
+            865,
+            500
+          ]
+        ],
+        "label": "I05",
+        "dashed": false,
+        "label_position": [
+          910,
+          480
+        ]
+      },
+      {
+        "source": "ADMITIDA",
+        "target": "EN_ATENCION",
+        "points": [
+          [
+            865,
+            590
+          ],
+          [
+            865,
+            650
+          ]
+        ],
+        "label": "I08",
+        "dashed": false,
+        "label_position": [
+          910,
+          630
+        ]
+      },
+      {
+        "source": "EN_ATENCION",
+        "target": "PENDIENTE_VERIFICACION",
+        "points": [
+          [
+            865,
+            740
+          ],
+          [
+            865,
+            800
+          ]
+        ],
+        "label": "I09",
+        "dashed": false,
+        "label_position": [
+          910,
+          780
+        ]
+      },
+      {
+        "source": "PENDIENTE_VERIFICACION",
+        "target": "RESUELTA",
+        "points": [
+          [
+            865,
+            905
+          ],
+          [
+            865,
+            965
+          ]
+        ],
+        "label": "I11",
+        "dashed": false,
+        "label_position": [
+          910,
+          945
+        ]
+      },
+      {
+        "source": "EN_REVISION",
+        "target": "PENDIENTE_INFORMACION",
+        "points": [
+          [
+            1040,
+            375
+          ],
+          [
+            1230,
+            375
+          ]
+        ],
+        "label": "I03",
+        "dashed": false,
+        "label_position": [
+          1135,
+          362
+        ]
+      },
+      {
+        "source": "PENDIENTE_INFORMACION",
+        "target": "EN_REVISION",
+        "points": [
+          [
+            1230,
+            425
+          ],
+          [
+            1040,
+            425
+          ]
+        ],
+        "label": "I04",
+        "dashed": false,
+        "label_position": [
+          1135,
+          417
+        ]
+      },
+      {
+        "source": "EN_REVISION",
+        "target": "DESCARTADA",
+        "points": [
+          [
+            690,
+            385
+          ],
+          [
+            460,
+            385
+          ]
+        ],
+        "label": "I06",
+        "dashed": false,
+        "label_position": [
+          575,
+          375
+        ]
+      },
+      {
+        "source": "EN_REVISION",
+        "target": "DUPLICADA",
+        "points": [
+          [
+            725,
+            440
+          ],
+          [
+            725,
+            475
+          ],
+          [
+            295,
+            475
+          ],
+          [
+            295,
+            510
+          ]
+        ],
+        "label": "I07",
+        "dashed": false,
+        "label_position": [
+          500,
+          466
+        ]
+      },
+      {
+        "source": "PENDIENTE_VERIFICACION",
+        "target": "EN_ATENCION",
+        "points": [
+          [
+            1040,
+            850
+          ],
+          [
+            1135,
+            850
+          ],
+          [
+            1135,
+            695
+          ],
+          [
+            1040,
+            695
+          ]
+        ],
+        "label": "I10",
+        "dashed": false,
+        "label_position": [
+          1135,
+          782
+        ]
+      },
+      {
+        "source": "RESUELTA",
+        "target": "EN_ATENCION",
+        "points": [
+          [
+            690,
+            1010
+          ],
+          [
+            540,
+            1010
+          ],
+          [
+            540,
+            695
+          ],
+          [
+            690,
+            695
+          ]
+        ],
+        "label": "I12",
+        "dashed": true,
+        "label_position": [
+          540,
+          915
+        ]
+      },
+      {
+        "source": "EN_ATENCION",
+        "target": "ADMITIDA",
+        "points": [
+          [
+            690,
+            670
+          ],
+          [
+            610,
+            670
+          ],
+          [
+            610,
+            545
+          ],
+          [
+            690,
+            545
+          ]
+        ],
+        "label": "I14",
+        "dashed": true,
+        "label_position": [
+          610,
+          620
+        ]
+      },
+      {
+        "source": "cancelables",
+        "target": "CANCELADA",
+        "points": [
+          [
+            1435,
+            830
+          ],
+          [
+            1435,
+            970
+          ]
+        ],
+        "label": "I13 / I14",
+        "dashed": true,
+        "label_position": [
+          1500,
+          915
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "x": 100,
+        "y": 1150,
+        "text": "I14: al cancelar una orden, cada incidencia vuelve a ADMITIDA o pasa a CANCELADA según decisión motivada.",
+        "width": 128
+      },
+      {
+        "x": 100,
+        "y": 1190,
+        "text": "EN_ATENCION incluye bloqueo de la orden. RESUELTA solo se alcanza mediante cierre formal verificado.",
+        "width": 128
+      }
+    ]
+  },
+  {
+    "file": "figura_05_estados_orden",
+    "width": 1780,
+    "height": 1440,
+    "title": "Figura 5. Estados y transiciones de una orden de trabajo",
+    "subtitle": "Las etiquetas O01–O14 remiten a la tabla normativa de esta fase. CANCELADA es terminal.",
+    "nodes": [
+      {
+        "id": "BORRADOR",
+        "x": 660,
+        "y": 200,
+        "w": 390,
+        "h": 90,
+        "title": "BORRADOR",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "PROGRAMADA",
+        "x": 660,
+        "y": 345,
+        "w": 390,
+        "h": 90,
+        "title": "PROGRAMADA",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "EN_EJECUCION",
+        "x": 660,
+        "y": 490,
+        "w": 390,
+        "h": 90,
+        "title": "EN_EJECUCION",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "FINALIZADA_TECNICAMENTE",
+        "x": 660,
+        "y": 640,
+        "w": 390,
+        "h": 105,
+        "title": "FINALIZADA_TECNICAMENTE",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "PENDIENTE_VERIFICACION",
+        "x": 660,
+        "y": 805,
+        "w": 390,
+        "h": 105,
+        "title": "PENDIENTE_VERIFICACION",
+        "sub": "",
+        "kind": "normal"
+      },
+      {
+        "id": "VERIFICADA",
+        "x": 660,
+        "y": 970,
+        "w": 390,
+        "h": 90,
+        "title": "VERIFICADA",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "CERRADA",
+        "x": 660,
+        "y": 1120,
+        "w": 390,
+        "h": 90,
+        "title": "CERRADA",
+        "sub": "",
+        "kind": "success"
+      },
+      {
+        "id": "BLOQUEADA",
+        "x": 1280,
+        "y": 475,
+        "w": 390,
+        "h": 115,
+        "title": "BLOQUEADA",
+        "sub": "",
+        "kind": "exception"
+      },
+      {
+        "id": "cancelables",
+        "x": 95,
+        "y": 195,
+        "w": 385,
+        "h": 190,
+        "title": "Estados no terminales",
+        "sub": "Desde BORRADOR hasta VERIFICADA, incluido BLOQUEADA.",
+        "kind": "note"
+      },
+      {
+        "id": "CANCELADA",
+        "x": 95,
+        "y": 470,
+        "w": 385,
+        "h": 90,
+        "title": "CANCELADA",
+        "sub": "",
+        "kind": "exception"
+      }
+    ],
+    "edges": [
+      {
+        "source": "inicio",
+        "target": "BORRADOR",
+        "points": [
+          [
+            855,
+            155
+          ],
+          [
+            855,
+            200
+          ]
+        ],
+        "label": "O01",
+        "dashed": false,
+        "label_position": [
+          905,
+          182
+        ]
+      },
+      {
+        "source": "BORRADOR",
+        "target": "PROGRAMADA",
+        "points": [
+          [
+            855,
+            290
+          ],
+          [
+            855,
+            345
+          ]
+        ],
+        "label": "O02",
+        "dashed": false,
+        "label_position": [
+          905,
+          329
+        ]
+      },
+      {
+        "source": "PROGRAMADA",
+        "target": "EN_EJECUCION",
+        "points": [
+          [
+            855,
+            435
+          ],
+          [
+            855,
+            490
+          ]
+        ],
+        "label": "O03",
+        "dashed": false,
+        "label_position": [
+          905,
+          475
+        ]
+      },
+      {
+        "source": "EN_EJECUCION",
+        "target": "FINALIZADA_TECNICAMENTE",
+        "points": [
+          [
+            855,
+            580
+          ],
+          [
+            855,
+            640
+          ]
+        ],
+        "label": "O06",
+        "dashed": false,
+        "label_position": [
+          905,
+          620
+        ]
+      },
+      {
+        "source": "FINALIZADA_TECNICAMENTE",
+        "target": "PENDIENTE_VERIFICACION",
+        "points": [
+          [
+            855,
+            745
+          ],
+          [
+            855,
+            805
+          ]
+        ],
+        "label": "O07",
+        "dashed": false,
+        "label_position": [
+          905,
+          788
+        ]
+      },
+      {
+        "source": "PENDIENTE_VERIFICACION",
+        "target": "VERIFICADA",
+        "points": [
+          [
+            855,
+            910
+          ],
+          [
+            855,
+            970
+          ]
+        ],
+        "label": "O09",
+        "dashed": false,
+        "label_position": [
+          905,
+          953
+        ]
+      },
+      {
+        "source": "VERIFICADA",
+        "target": "CERRADA",
+        "points": [
+          [
+            855,
+            1060
+          ],
+          [
+            855,
+            1120
+          ]
+        ],
+        "label": "O10",
+        "dashed": false,
+        "label_position": [
+          905,
+          1100
+        ]
+      },
+      {
+        "source": "EN_EJECUCION",
+        "target": "BLOQUEADA",
+        "points": [
+          [
+            1050,
+            510
+          ],
+          [
+            1280,
+            510
+          ]
+        ],
+        "label": "O04",
+        "dashed": false,
+        "label_position": [
+          1175,
+          500
+        ]
+      },
+      {
+        "source": "BLOQUEADA",
+        "target": "EN_EJECUCION",
+        "points": [
+          [
+            1280,
+            560
+          ],
+          [
+            1050,
+            560
+          ]
+        ],
+        "label": "O05",
+        "dashed": false,
+        "label_position": [
+          1175,
+          552
+        ]
+      },
+      {
+        "source": "PENDIENTE_VERIFICACION",
+        "target": "EN_EJECUCION",
+        "points": [
+          [
+            1050,
+            858
+          ],
+          [
+            1130,
+            858
+          ],
+          [
+            1130,
+            605
+          ],
+          [
+            1010,
+            605
+          ],
+          [
+            1010,
+            580
+          ]
+        ],
+        "label": "O08",
+        "dashed": false,
+        "label_position": [
+          1130,
+          740
+        ]
+      },
+      {
+        "source": "VERIFICADA",
+        "target": "EN_EJECUCION",
+        "points": [
+          [
+            1050,
+            1015
+          ],
+          [
+            1210,
+            1015
+          ],
+          [
+            1210,
+            450
+          ],
+          [
+            1010,
+            450
+          ],
+          [
+            1010,
+            490
+          ]
+        ],
+        "label": "O13",
+        "dashed": true,
+        "label_position": [
+          1210,
+          930
+        ]
+      },
+      {
+        "source": "FINALIZADA_TECNICAMENTE",
+        "target": "EN_EJECUCION",
+        "points": [
+          [
+            660,
+            692
+          ],
+          [
+            595,
+            692
+          ],
+          [
+            595,
+            550
+          ],
+          [
+            660,
+            550
+          ]
+        ],
+        "label": "O14",
+        "dashed": false,
+        "label_position": [
+          595,
+          630
+        ]
+      },
+      {
+        "source": "CERRADA",
+        "target": "EN_EJECUCION",
+        "points": [
+          [
+            660,
+            1165
+          ],
+          [
+            535,
+            1165
+          ],
+          [
+            535,
+            510
+          ],
+          [
+            660,
+            510
+          ]
+        ],
+        "label": "O11",
+        "dashed": true,
+        "label_position": [
+          535,
+          1050
+        ]
+      },
+      {
+        "source": "cancelables",
+        "target": "CANCELADA",
+        "points": [
+          [
+            287,
+            385
+          ],
+          [
+            287,
+            470
+          ]
+        ],
+        "label": "O12",
+        "dashed": true,
+        "label_position": [
+          340,
+          438
+        ]
+      }
+    ],
+    "notes": [
+      {
+        "x": 95,
+        "y": 1300,
+        "text": "O08 / O13 / O14 devuelven a atención: una nueva intervención exige programación vigente sin conflicto.",
+        "width": 125
+      },
+      {
+        "x": 95,
+        "y": 1340,
+        "text": "O11 conserva el historial y abre un nuevo ciclo. El dictamen previo no habilita el nuevo cierre.",
+        "width": 125
+      }
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+---
+title: Figura 5. Estados y transiciones de una orden de trabajo
+---
+stateDiagram-v2
+    [*] --> BORRADOR: O01 / Coordinador
+    BORRADOR --> PROGRAMADA: O02 / Coordinador
+    PROGRAMADA --> EN_EJECUCION: O03 / Técnico responsable
+    EN_EJECUCION --> BLOQUEADA: O04 / Técnico responsable o coordinador
+    BLOQUEADA --> EN_EJECUCION: O05 / Técnico responsable autorizado
+    EN_EJECUCION --> FINALIZADA_TECNICAMENTE: O06 / Técnico responsable
+    FINALIZADA_TECNICAMENTE --> PENDIENTE_VERIFICACION: O07 / Coordinador
+    PENDIENTE_VERIFICACION --> EN_EJECUCION: O08 / Verificador no conforme
+    PENDIENTE_VERIFICACION --> VERIFICADA: O09 / Verificador conforme
+    VERIFICADA --> CERRADA: O10 / Coordinador
+    CERRADA --> EN_EJECUCION: O11 / Coordinador
+    BORRADOR --> CANCELADA: O12 / Coordinador
+    PROGRAMADA --> CANCELADA: O12 / Coordinador
+    EN_EJECUCION --> CANCELADA: O12 / Coordinador
+    BLOQUEADA --> CANCELADA: O12 / Coordinador
+    FINALIZADA_TECNICAMENTE --> CANCELADA: O12 / Coordinador
+    PENDIENTE_VERIFICACION --> CANCELADA: O12 / Coordinador
+    VERIFICADA --> CANCELADA: O12 / Coordinador
+    VERIFICADA --> EN_EJECUCION: O13 / Coordinador
+    FINALIZADA_TECNICAMENTE --> EN_EJECUCION: O14 / Coordinador

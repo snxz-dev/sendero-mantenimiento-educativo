@@ -1,0 +1,24 @@
+---
+title: Figura 4. Estados y transiciones de una incidencia
+---
+stateDiagram-v2
+    [*] --> REGISTRADA: I01 / Solicitante
+    REGISTRADA --> EN_REVISION: I02 / Coordinador
+    EN_REVISION --> PENDIENTE_INFORMACION: I03 / Coordinador
+    PENDIENTE_INFORMACION --> EN_REVISION: I04 / Solicitante autor
+    EN_REVISION --> ADMITIDA: I05 / Coordinador
+    EN_REVISION --> DESCARTADA: I06 / Coordinador
+    EN_REVISION --> DUPLICADA: I07 / Coordinador
+    ADMITIDA --> EN_ATENCION: I08 / Vincular orden
+    EN_ATENCION --> PENDIENTE_VERIFICACION: I09 / Evento O07
+    PENDIENTE_VERIFICACION --> EN_ATENCION: I10 / Evento O08 u O13
+    PENDIENTE_VERIFICACION --> RESUELTA: I11 / Evento O10
+    RESUELTA --> EN_ATENCION: I12 / Evento O11
+    REGISTRADA --> CANCELADA: I13 / Coordinador
+    EN_REVISION --> CANCELADA: I13 / Coordinador
+    PENDIENTE_INFORMACION --> CANCELADA: I13 / Coordinador
+    ADMITIDA --> CANCELADA: I13 / Coordinador
+    EN_ATENCION --> ADMITIDA: I14 / O12 con atención pendiente
+    PENDIENTE_VERIFICACION --> ADMITIDA: I14 / O12 con atención pendiente
+    EN_ATENCION --> CANCELADA: I14 / O12 con cancelación justificada
+    PENDIENTE_VERIFICACION --> CANCELADA: I14 / O12 con cancelación justificada

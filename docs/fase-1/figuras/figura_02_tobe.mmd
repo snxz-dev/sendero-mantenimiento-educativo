@@ -1,0 +1,15 @@
+---
+title: Figura 2. Flujo propuesto de atención y mantenimiento
+---
+flowchart LR
+    A[Reportar: web] --> B[Revisar y admitir: escritorio]
+    B --> C[Crear orden correctiva]
+    P[Crear orden preventiva manual] --> D[Programar y asignar: escritorio]
+    C --> D
+    D --> E[Ejecutar y documentar: móvil]
+    E --> F[Revisar finalización: escritorio]
+    F -->|Conforme| G[Verificar: web]
+    F -->|Devolución| E
+    G -->|Acepta| H[Cerrar: escritorio]
+    G -->|Inconformidad| E
+    H --> I[Consultar historial e indicadores]
