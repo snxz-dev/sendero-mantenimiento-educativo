@@ -7,11 +7,11 @@
 **Autor:** Stalyn Mateo Sánchez Cevallos  
 **Año:** 2026  
 **Caso:** Centro de Formación Técnica Sendero, institución ficticia.  
-**Estado:** propuesta de Fase 2 para revisión. No se ha seleccionado un motor de base de datos ni se ha iniciado la implementación.
+**Estado:** Fase 2 cerrada con aprobación conceptual y correcciones finales. No se ha seleccionado un motor de base de datos ni se ha iniciado la implementación.
 
 ## 1. Propósito y límites de esta fase
 
-Esta fase transforma los requerimientos aprobados en un modelo conceptual y relacional normalizado. Define entidades, atributos, claves, cardinalidades y restricciones; prepara un diccionario de datos y un SQL preliminar independiente del motor.
+Esta fase transforma los requerimientos aprobados en un modelo conceptual y relacional normalizado. Define entidades, atributos, claves, cardinalidades y restricciones; prepara un diccionario de datos y un **SQL preliminar basado en SQL estándar, sujeto a adaptación al motor seleccionado en Fase 3**.
 
 El diseño mantiene dos alcances:
 
@@ -19,6 +19,8 @@ El diseño mantiene dos alcances:
 - **Ampliaciones:** 4 tablas para duplicidad, cancelaciones formales, correcciones históricas y versiones de programación. Se documentan, pero no son obligatorias en la primera implementación.
 
 No se crean tablas de inventarios, compras, facturación, geolocalización continua ni sincronización offline. Tampoco se programa backend, web, escritorio o móvil.
+
+El alcance del MVP queda congelado en las 21 tablas de esta entrega. En las fases siguientes no se añadirán nuevas tablas salvo que se demuestre que un requerimiento MVP no puede satisfacerse con el modelo actual y la modificación se justifique explícitamente antes de realizarla. Las 4 tablas de ampliación no forman parte del compromiso de implementación inicial.
 
 El script utiliza `PREF_` como marcador temporal. No representa las iniciales del autor. Antes del script definitivo deberá sustituirse por las iniciales confirmadas explícitamente y deberá adaptarse al motor elegido en Fase 3.
 
@@ -243,6 +245,8 @@ La fuente estructurada está disponible en [modelo_datos.json](modelo_datos.json
 
 Las transiciones permitidas continúan definidas por I01–I14 y O01–O14 de Fase 1. Guardar estados en catálogos no autoriza cualquier cambio entre ellos.
 
+Los valores `DUPLICADA`, `CANCELADA`, `PREVENTIVA`, `COLABORADOR`, `RETIRADA` y las estructuras marcadas como ampliación permanecen en el modelo para evolución y trazabilidad. Mientras sus funciones no estén implementadas, la futura interfaz MVP no deberá presentarlos en menús, formularios, filtros, acciones o mensajes como opciones disponibles. Su presencia en catálogos o restricciones no equivale a funcionalidad entregada.
+
 ## 9. Reglas de integridad
 
 ### 9.1. Integridad declarativa en el SQL preliminar
@@ -371,6 +375,6 @@ Estas son comprobaciones del diseño y los archivos. No son pruebas del aplicati
 
 ## 15. Estado de cierre propuesto
 
-Fase 2 entrega un modelo conceptual, 25 entidades/tablas clasificadas, 187 campos, cardinalidades, MER, modelo relacional en 3FN, diccionario, reglas de integridad, SQL preliminar, trazabilidad y dos figuras renderizadas con fuentes Mermaid.
+Fase 2 entrega un modelo conceptual, 25 entidades/tablas clasificadas, 187 campos, cardinalidades, MER, modelo relacional en 3FN, diccionario, reglas de integridad, SQL preliminar, trazabilidad y dos figuras renderizadas con fuentes Mermaid. El alcance de implementación queda congelado en las 21 tablas del MVP.
 
-No se seleccionaron tecnologías, motor, arquitectura o frameworks. No se programaron aplicaciones ni se ejecutaron pruebas de base de datos. La Fase 2 queda detenida para revisión antes de cualquier decisión de Fase 3.
+No se seleccionaron tecnologías, motor, arquitectura o frameworks. No se programaron aplicaciones ni se ejecutaron pruebas de base de datos. La Fase 2 queda oficialmente cerrada y el trabajo se detiene antes de cualquier decisión de Fase 3.

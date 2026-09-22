@@ -1,4 +1,4 @@
--- Esquema preliminar independiente del motor
+-- SQL preliminar basado en SQL estándar, sujeto a adaptación al motor seleccionado en Fase 3.
 -- PREF_ es un marcador temporal. Debe sustituirse por las iniciales confirmadas por el autor antes del script definitivo.
 -- No ejecutar como migración de producción hasta seleccionar motor y adaptar identidad, índices parciales, transacciones y almacenamiento de evidencias.
 

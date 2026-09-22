@@ -2,6 +2,9 @@
   "version": "2.0-preliminar",
   "prefix_placeholder": "PREF_",
   "engine": "No seleccionado",
+  "mvp_scope_frozen": true,
+  "mvp_table_count": 21,
+  "extension_table_count": 4,
   "tables": [
     {
       "name": "ROL",

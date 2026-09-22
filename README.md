@@ -12,8 +12,8 @@ La institución y los datos del caso son ficticios. El proyecto es independiente
 | Fase | Estado | Evidencia disponible |
 |---|---|---|
 | Fase 1 — Análisis y Diseño | **Cerrada y publicada** | Problema, alcance, factibilidad preliminar, actores, procesos, requerimientos, reglas, clasificación MVP, estados y cinco figuras. Tag `v0.1-fase-1`. |
-| Fase 2 — Modelado y diseño de base de datos | **Terminada para revisión** | Modelo conceptual, MER, modelo relacional en 3FN, diccionario, SQL preliminar, integridad y trazabilidad. No se ha elegido motor. |
-| Fase 3 — Arquitectura, stack y base de datos | **Pendiente** | No se han seleccionado tecnologías ni generado el SQL. |
+| Fase 2 — Modelado y diseño de base de datos | **Cerrada** | Modelo conceptual, MER, modelo relacional en 3FN, diccionario, SQL preliminar, integridad y trazabilidad. Referencia revisada: commit `331fa34`; correcciones de cierre registradas posteriormente. No se ha elegido motor. |
+| Fase 3 — Arquitectura, stack y base de datos | **Pendiente** | No se ha seleccionado el motor de base de datos ni generado el SQL definitivo específico del motor. |
 | Fase 4 — Mockups y prototipo frontend | **Pendiente** | No iniciado. |
 | Fase 5 — Implementación e integración | **Pendiente** | No existe código funcional de web, escritorio, móvil o backend. |
 | Fase 6 — Pruebas, resultados y defensa | **Pendiente** | No existen pruebas de software ejecutadas ni resultados operativos. |
@@ -24,7 +24,9 @@ La primera versión obligatoria demostrará el flujo:
 
 **Reporte → revisión/priorización → orden → asignación → intervención → evidencia → finalización técnica → verificación → cierre/reapertura → historial.**
 
-Se documentan como ampliaciones posteriores la gestión formal de duplicados, órdenes preventivas, cancelaciones complejas, prevención automática de conflictos de agenda, correcciones históricas avanzadas y controles exhaustivos de concurrencia.
+Se documentan como ampliaciones posteriores la gestión formal de duplicados, órdenes preventivas, cancelaciones complejas, prevención automática de conflictos de agenda, correcciones históricas avanzadas y controles exhaustivos de concurrencia. Los estados y acciones de esas ampliaciones, incluidos `DUPLICADA` y `CANCELADA`, no deben mostrarse como funciones disponibles en las interfaces del MVP mientras no estén implementados.
+
+El alcance del MVP queda congelado en las 21 tablas aprobadas en Fase 2. No se añadirán tablas en fases posteriores salvo que un requerimiento MVP no pueda satisfacerse con el modelo actual y la modificación se justifique explícitamente antes de realizarla.
 
 ## Distribución funcional prevista
 
@@ -57,7 +59,7 @@ Los directorios de aplicaciones, backend y base de datos contienen únicamente a
 - [Fase 2 — Modelado y Diseño de Base de Datos](docs/fase-2/Fase_2_Modelado_y_Base_de_Datos.md)
 - [Informe navegable de Fase 2](docs/fase-2/Fase_2_Modelado_y_Base_de_Datos.html)
 - [Diccionario de datos de Fase 2](docs/fase-2/diccionario_datos.csv)
-- [SQL preliminar independiente del motor](database/esquema_preliminar.sql)
+- [SQL preliminar basado en SQL estándar, sujeto a adaptación al motor seleccionado en Fase 3](database/esquema_preliminar.sql)
 
 ## Entorno de trabajo confirmado
 
