@@ -4,6 +4,9 @@ Caso práctico académico para diseñar y desarrollar un sistema integrado de ge
 
 La institución y los datos del caso son ficticios. El proyecto es independiente de cualquier trabajo anterior.
 
+**Repositorio público:** [github.com/snxz-dev/sendero-mantenimiento-educativo](https://github.com/snxz-dev/sendero-mantenimiento-educativo)  
+**Versión documental vigente:** [`v0.1-fase-1`](https://github.com/snxz-dev/sendero-mantenimiento-educativo/tree/v0.1-fase-1)
+
 ## Estado real del proyecto
 
 | Fase | Estado | Evidencia disponible |
@@ -70,9 +73,12 @@ Los tags reservados no deben crearse antes de que sus entregables existan.
 
 ## Repositorio remoto
 
-Todavía no se ha configurado un repositorio remoto ni existe un enlace permanente. Cuando se defina el alojamiento, el enlace se añadirá al README y al informe académico sin alterar la identificación de esta entrega.
+El repositorio central está publicado en:
+
+[https://github.com/snxz-dev/sendero-mantenimiento-educativo](https://github.com/snxz-dev/sendero-mantenimiento-educativo)
+
+La rama principal es `main`. La línea base de esta fase se identifica con `v0.1-fase-1`.
 
 ## Autoría y licencia
 
 Los datos académicos de autoría están pendientes. No se declara una licencia hasta que el autor la seleccione expresamente.
-
