@@ -18,3 +18,5 @@ dist/
 build/
 coverage/
 
+# Copia DOCX inicial retenida por un proceso local de Word; la entrega versionada usa *_Final.docx.
+/docs/informe/Informe_Academico_Consolidado.docx

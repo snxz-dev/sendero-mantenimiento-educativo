@@ -1,0 +1,20 @@
+flowchart LR
+  subgraph CLIENTES[Clientes TypeScript]
+    W[Web\nReact + Vite]
+    D[Desktop\nElectron + React]
+    M[Mobile\nReact Native + Expo]
+  end
+  subgraph API[Backend modular Node.js + Express]
+    R[REST API\nHTTPS · JSON · multipart]
+    C[Controllers]
+    S[Services\nRBAC · estados · reglas]
+    P[Repositories\nPrisma]
+  end
+  DB[(PostgreSQL\n21 tablas MVP)]
+  FS[(Filesystem persistente\nEvidencias fotográficas)]
+  W --> R
+  D --> R
+  M --> R
+  R --> C --> S --> P --> DB
+  S --> FS
+  S -. metadatos y SHA-256 .-> DB

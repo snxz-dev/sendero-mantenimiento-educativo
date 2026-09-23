@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<rect width="1600" height="900" fill="#ffffff"/>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#000000}.title{font-size:34px;font-weight:700}.sub{font-size:20px}.box{fill:#ffffff;stroke:#000000;stroke-width:3;rx:18}.group{fill:#f4f4f4;stroke:#000000;stroke-width:2;stroke-dasharray:8 6;rx:24}.h{font-size:24px;font-weight:700}.t{font-size:20px}.small{font-size:17px}.arrow{stroke:#000000;stroke-width:4;fill:none;marker-end:url(#a)}
+</style>
+<defs><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#000000"/></marker></defs>
+<text x="800" y="55" text-anchor="middle" class="title">Figura 8. Arquitectura técnica propuesta para el sistema Sendero</text>
+<rect class="group" x="45" y="105" width="300" height="610"/>
+<text x="195" y="145" text-anchor="middle" class="h">Clientes TypeScript</text>
+<rect class="box" x="80" y="185" width="230" height="120"/><text x="195" y="230" text-anchor="middle" class="h">Web</text><text x="195" y="265" text-anchor="middle" class="t">React + Vite</text>
+<rect class="box" x="80" y="350" width="230" height="120"/><text x="195" y="395" text-anchor="middle" class="h">Desktop</text><text x="195" y="430" text-anchor="middle" class="t">Electron + React</text>
+<rect class="box" x="80" y="515" width="230" height="120"/><text x="195" y="560" text-anchor="middle" class="h">Mobile</text><text x="195" y="595" text-anchor="middle" class="t">React Native + Expo</text>
+<rect class="group" x="430" y="105" width="650" height="610"/>
+<text x="755" y="145" text-anchor="middle" class="h">Backend modular Node.js + Express</text>
+<rect class="box" x="475" y="205" width="180" height="125"/><text x="565" y="245" text-anchor="middle" class="h">REST API</text><text x="565" y="278" text-anchor="middle" class="small">HTTPS · JSON</text><text x="565" y="304" text-anchor="middle" class="small">multipart</text>
+<rect class="box" x="700" y="205" width="160" height="125"/><text x="780" y="275" text-anchor="middle" class="h">Controllers</text>
+<rect class="box" x="650" y="405" width="260" height="150"/><text x="780" y="450" text-anchor="middle" class="h">Services</text><text x="780" y="485" text-anchor="middle" class="t">Roles y permisos</text><text x="780" y="518" text-anchor="middle" class="t">Estados y reglas</text>
+<rect class="box" x="475" y="405" width="140" height="150"/><text x="545" y="458" text-anchor="middle" class="h">Repos</text><text x="545" y="493" text-anchor="middle" class="t">Prisma</text>
+<path class="arrow" d="M345 410 H455"/><text x="400" y="390" text-anchor="middle" class="small">HTTPS</text>
+<path class="arrow" d="M655 267 H680"/><path class="arrow" d="M780 330 V385"/><path class="arrow" d="M650 480 H635"/>
+<rect class="box" x="1180" y="180" width="350" height="170"/><text x="1355" y="225" text-anchor="middle" class="h">PostgreSQL</text><text x="1355" y="265" text-anchor="middle" class="t">21 tablas MVP</text><text x="1355" y="302" text-anchor="middle" class="small">Datos · catálogos · historial</text>
+<rect class="box" x="1180" y="475" width="350" height="170"/><text x="1355" y="520" text-anchor="middle" class="h">Filesystem persistente</text><text x="1355" y="560" text-anchor="middle" class="t">Evidencias fotográficas</text><text x="1355" y="597" text-anchor="middle" class="small">Archivos fuera de PostgreSQL</text>
+<path class="arrow" d="M615 480 C990 480 950 265 1160 265"/><text x="980" y="325" text-anchor="middle" class="small">Transacciones y consultas</text>
+<path class="arrow" d="M910 500 C1040 500 1050 560 1160 560"/><text x="1035" y="535" text-anchor="middle" class="small">Archivos</text>
+<path class="arrow" d="M910 445 C1050 410 1050 330 1160 300" stroke-dasharray="8 6"/><text x="1030" y="390" text-anchor="middle" class="small">Metadatos + SHA-256</text>
+<text x="800" y="790" text-anchor="middle" class="t">El backend es la autoridad final para autenticación, autorización y transiciones de estado.</text>
+<text x="800" y="830" text-anchor="middle" class="small">Fuente: elaboración propia · Fase 3 · 2026</text>
+</svg>
